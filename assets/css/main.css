@@ -1,0 +1,77 @@
+:root {
+	--fontFamily: 'Stack Sans Headline', sans-serif;
+
+    --color_h1: #287FD7;
+    --color_h2: #777777;
+    --color_header_text: #dfdfd6;
+
+    --button_width: 6rem;
+    --button_height: calc(var(--button_width)* 0.5);
+}
+
+* {
+	border:0;
+	box-sizing:content-box;
+	margin:0;
+	outline:0;
+	padding:0;
+	text-decoration:none;
+}
+
+@font-face {
+	font-family: var(--fontFamily);
+	src:url(../fonts/StackSansHeadline-VariableFont_wght.ttf) format("embedded-opentype"),url(../fonts/StackSansHeadline-VariableFont_wght.ttf) format("svg")
+}
+
+html, body {
+	font-family: var(--fontFamily);
+	font-display: swap;
+	-ms-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header div {
+    display: flex;
+    justify-content: space-around;
+
+    min-width: 90vw;
+    height: 2rem;
+
+    margin: 2rem 1rem;
+}
+
+header div a {
+    color: var(--color_header_text);
+    font-weight: bold;
+}
+
+h1 {
+    color: var(--color_h1);
+}
+
+h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--color_h2);
+}
+
+#content {
+    margin-top: 5rem;
+}
+
+.button {
+    display: inline-block;
+    color: var(--color_header_text);
+    background-color: var(--color_h1);
+    width: var(--button_width);
+    height: var(--button_height);
+    border-radius: 4rem;
+    text-align: center;
+    line-height: var(--button_height)
+}

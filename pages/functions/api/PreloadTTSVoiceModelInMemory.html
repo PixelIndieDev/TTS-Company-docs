@@ -1,0 +1,63 @@
+<div class="function_container">
+    <h2>Preload TTS voice model in memory</h2>
+    <h3> Asynchronously loads a TTS voice model into system memory</h3>
+
+    <h4>Inputs</h4>
+        <h5>voiceModelName</h5>
+            <p>The file name of the voice model to preload</p>
+
+    <h4>Returns</h4>
+        <h5>Success</h5>
+            <p>true if the model was successfully preloaded, false otherwise</p>
+        <h5>Error</h5>
+            <p>An error message if the operation failed, "ok" if successful</p>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C#</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static async Task<(bool Success, string Error)> PreloadTTSVoiceModelInMemory(string voiceModelName)
+            </code>
+        </pre>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="alert tip">
+        <h1>Tip</h1>
+        <h2>Best practice example</h2>
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    // In your mod's Awake() method, preload the voice model
+                    await TTSCompanyAPI.PreloadTTSVoiceModelInMemory("en_US-hfc_female-medium");
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>The following voice models are loaded by default:</h2>
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    "en_US-hfc_female-medium"
+                    "en_US-hfc_male-medium"
+                    "en_US-ryan-medium"
+                    "en_US-sam-medium"
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>

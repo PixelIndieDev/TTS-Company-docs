@@ -1,0 +1,52 @@
+<div class="function_container">
+    <div class="alert important">
+        <h1>Important</h1>
+        <h2>Make sure you have loaded a TTS voice and given the network object an TTS audio source!</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+        <h3>Adds a TTS audio source component to a network object, enabling it to generate and play TTS audio.</h3>
+
+        <h4>Inputs</h4>
+            <h5>networkObjectRefOfSpeaker <span class="param_note note_overload">Overload 1</span></h5>
+                <p>A NetworkObjectReference pointing to the network object</p>
+
+            <h5>objectRefOfSpeaker <span class="param_note note_overload">Overload 2</span></h5>
+                <p>The local GameObject instance to add the TTS audio source to</p>
+
+            <h5>useGlobalAudioSource <span class="param_note">optional</span></h5>
+                <p>Determise whether to use the global TTS audio source or the calling assembly TTS audio source</p>
+
+            <h5>audioSourceSettings <span class="param_note">optional</span></h5>
+                <p>TTSAudioSourceSettings object containing configuration options for the TTS audio source (volume, pitch, spatial audio settings, etc.)</p>
+
+        <h4>Returns</h4>
+            <h5>None</h5>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 1)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void AddTTSAudioSourceOnNetworkObject(NetworkObjectReference networkObjectRefOfSpeaker, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 2)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void AddTTSAudioSourceOnNetworkObject(GameObject objectRefOfSpeaker, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+</div>

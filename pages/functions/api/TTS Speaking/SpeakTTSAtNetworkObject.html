@@ -1,0 +1,140 @@
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>Each string[] item will be spoken sequentially.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>The textToSpeak input will automatically be split by sentence under the hood.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+        <h3>Adds a TTS audio source component to a network object, enabling it to generate and play TTS audio.</h3>
+
+        <h4>Inputs</h4>
+            <h5>networkObjectRefOfSpeaker <span class="param_note note_overload">Overload 1</span><span class="param_note note_overload">Overload 2</span></h5>
+                <p>A NetworkObjectReference pointing to the network object that will play the TTS audio</p>
+
+            <h5>objectRefOfSpeaker <span class="param_note note_overload">Overload 3</span><span class="param_note note_overload">Overload 4</span></h5>
+                <p>The local GameObject instance that will play the TTS audio</p>
+
+            <h5>textsToSpeak <span class="param_note note_overload">Overload 1</span><span class="param_note note_overload">Overload 3</span></h5>
+                <p>An array of strings containing the text lines to be converted to speech</p>
+
+            <h5>textToSpeak <span class="param_note note_overload">Overload 2</span><span class="param_note note_overload">Overload 4</span></h5>
+                <p>A string containing the text lines to be converted to speech</p>
+
+            <h5>useGlobalAudioSource <span class="param_note">optional</span></h5>
+                <p>Determise whether to use the global TTS audio source or the calling assembly TTS audio source</p>
+
+            <h5>voiceSettings <span class="param_note">optional</span></h5>
+                <p>PiperVoiceSettings object containing configuration options for the voice parameters (speaking rate, voice model, etc.)</p>
+
+            <h5>audioSourceSettings <span class="param_note">optional</span></h5>
+                <p>TTSAudioSourceSettings object containing configuration options for the TTS audio source (volume, pitch, spatial audio settings, etc.)</p>
+
+        <h4>Returns</h4>
+            <h5>None</h5>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 1)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void SpeakTTSAtNetworkObject(NetworkObjectReference networkObjectRefOfSpeaker, string[] textsToSpeak, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, PiperVoiceSettings voiceSettings = APIDefaultsConstants.PIPER_VOICE_SETTING_DEFAULT, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 2)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void SpeakTTSAtNetworkObject(NetworkObjectReference networkObjectRefOfSpeaker, string textToSpeak, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, PiperVoiceSettings voiceSettings = APIDefaultsConstants.PIPER_VOICE_SETTING_DEFAULT, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 3)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void SpeakTTSAtNetworkObject(GameObject objectRefOfSpeaker, string[] textsToSpeak, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, PiperVoiceSettings voiceSettings = APIDefaultsConstants.PIPER_VOICE_SETTING_DEFAULT, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 4)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void SpeakTTSAtNetworkObject(GameObject objectRefOfSpeaker, string textToSpeak, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE, PiperVoiceSettings voiceSettings = APIDefaultsConstants.PIPER_VOICE_SETTING_DEFAULT, TTSAudioSourceSettings audioSourceSettings = APIDefaultsConstants.TTS_AUDIO_SOURCE_SETTING_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+</div>
+
+<div class="function_container">
+    <div class="alert tip">
+        <h1>Tip</h1>
+        <h2>Best practice example</h2>
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    // If you have repeated sentences with custom inputs, then it's best to split the sentence in multiple items
+                    // This way only the new word is generated and the other parts are reused from the cache
+                    // See below for an example
+
+                    // In this example I'm just gonna use a random enemy name as the input for simplicity sake
+                    string[] enemyNames = new[]
+                    {
+                        "Barber",
+                        "Bracken",
+                        "Bunker Spider",
+                        "Coil-Head",
+                        "Hoarding Bug",
+                        "Hygrodere",
+                        "Jester",
+                        "Nutcracker"
+                    };
+
+                    // The sentence that is getting reused
+                    string[] customStrings = new[]
+                    {
+                        "Warning, ",
+                        "ENTITYNAME",
+                        " detected near your position."
+                    };
+
+                    // Get a random index
+                    randomIndex = UnityEngine.Random.Range(0, enemyNames.Length);
+                    // Replace "ENTITYNAME" with the random enemy name
+                    customStrings[1] = enemyNames[randomIndex];
+
+                    // Player is going to speak now
+                    PlayerControllerB localPlayer = StartOfRound.Instance.localPlayerController;
+                    // Now speak
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(localPlayer.gameObject, customStrings);
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>

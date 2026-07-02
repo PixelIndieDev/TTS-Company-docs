@@ -9,9 +9,11 @@
 
     --button_width: 6rem;
     --button_height: calc(var(--button_width)* 0.5);
+    --button_margin: 0.4rem;
 
     --alerts_tip_color: #188131;
     --alerts_note_color: #0c67d8;
+    --alerts_important_color: #8253de;
 }
 
 * {
@@ -20,6 +22,7 @@
 	outline:0;
 	padding:0;
 	text-decoration:none;
+    scrollbar-gutter:stable;
 }
 
 @media(prefers-reduced-motion: no-preference) {
@@ -47,22 +50,20 @@ html, body {
     color: var(--color_white_text);
 }
 
-header div {
+header > div {
     display: flex;
     justify-content: space-around;
-
     min-width: 90vw;
     height: 2rem;
-
     margin: 3vh 2vw;
 }
 
-header div a {
+header > div a {
     color: var(--color_white_text);
     font-weight: bold;
 }
 
-header div a:first-of-type {
+header > div a:first-of-type {
     margin-left: -3rem;
 }
 
@@ -78,32 +79,57 @@ h2 {
 
 #content {
     margin-top: 5rem;
-    width: 70rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     view-transition-name: inner_content;
 }
 
 #replaceableContent {
-    margin-top: 1rem;
+    margin-top: 0;
+    width: 60vw;
 }
 
 .button {
     display: inline-block;
-    color: var(--color_white_text);
-    background-color: var(--color_h1);
     width: var(--button_width);
     height: var(--button_height);
+    line-height: var(--button_height);
+    color: var(--color_white_text);
+    background-color: var(--color_h1);
     border-radius: 4rem;
     text-align: center;
-    line-height: var(--button_height)
+    margin: var(--button_margin);
+}
+
+button {
+    background-color: transparent;
+    color: var(--color_white_text);
+    text-align: left;
+    margin: var(--button_margin);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#home_content {
+    display: flex;
+    flex-direction: column;
 }
 
 /* alerts */
 /* Github formatting style */
 .alert {
+    width: auto;
     margin: 1.2rem;
     background-color: transparent;
     border-left: 0.25rem solid;
     padding: 0.5rem 1rem;
+}
+
+.alert:first-of-type {
+    margin-top: 0;
 }
 
 .alert h1 {
@@ -161,4 +187,21 @@ h2 {
 
 .note h1::before {
     mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>');
+}
+
+/* important coloring */
+.important {
+    border-left-color: var(--alerts_important_color) !important;
+}
+
+.important h1 {
+    color: var(--alerts_important_color) !important;
+}
+
+.important h2 {
+    color: var(--alerts_important_color) !important;
+}
+
+.important h1::before {
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5ZM440-440h80v-240h-80v240ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm301.5-598.5Q510-807 510-820t-8.5-21.5Q493-850 480-850t-21.5 8.5Q450-833 450-820t8.5 21.5Q467-790 480-790t21.5-8.5ZM200-200v-560 560Z"/></svg>');
 }

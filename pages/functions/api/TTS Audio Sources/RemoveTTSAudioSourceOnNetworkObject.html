@@ -1,0 +1,46 @@
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>You can only delete your caller assembly TTS audio source and not the global one.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+        <h3>Remove a TTS audio source component of a network object.</h3>
+
+        <h4>Inputs</h4>
+            <h5>networkObjectRefOfSpeaker <span class="param_note note_overload">Overload 1</span></h5>
+                <p>A NetworkObjectReference pointing to the network object</p>
+
+            <h5>objectRefOfSpeaker <span class="param_note note_overload">Overload 2</span></h5>
+                <p>The local GameObject instance to add the TTS audio source to</p>
+
+        <h4>Returns</h4>
+            <h5>None</h5>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 1)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void RemoveTTSAudioSourceOnNetworkObject(NetworkObjectReference networkObjectRefOfSpeaker)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 2)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void RemoveTTSAudioSourceOnNetworkObject(GameObject objectRefOfSpeaker)
+            </code>
+        </pre>
+    </div>
+
+</div>

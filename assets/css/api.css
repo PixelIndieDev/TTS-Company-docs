@@ -2,23 +2,94 @@
     --prism_color_keyword: #529cd6;
     --prism_color_return_type: #44b8a3;
     --prism_color_function: #dcdcaa;
+    --prism_color_unity_type: #37b8b0;
 
     --prism_color_default_text: #9bdcfe;
     --prism_color_comment: #57a64a;
     --prism_color_string: #d69d85;
 
     --function_background_color: color-mix(in srgb, var(--color_background), #000 8%);
+    --function_background_color_dark: color-mix(in srgb, var(--function_background_color), #000 2%);
 
     --function_h3: color-mix(in srgb, var(--color_white_text), #000 20%);
     --function_p: color-mix(in srgb, var(--function_h3), #000 10%);
 
     --item_collum_tab_size: 1rem;
+    --item_collum_tab_multiply: 2.5;
+}
+
+.api_content {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    height: fit-content;
+    overflow: hidden;
+    justify-content: start;
+    background-color: var(--function_background_color);
+    margin: 0.5vw;
+    padding: 1rem;
+    margin-top: 0;
+}
+
+.api_content > h3 {
+    margin-left: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.api_content > div > h4 {
+    margin-left: 0.25rem;
+}
+
+.nav_folder_group {
+    margin: var(--button_margin);
+}
+
+#button_links_api {
+    display: flex;
+    flex-direction: column;
+}
+
+#button_links_api button {
+    color: var(--prism_color_function);
+}
+
+.button_links_sidebar {
+    width: 100%;
+}
+
+.function_container_text_part {
+    padding: 1rem;
+}
+
+.overload_text {
+    padding-bottom: 0;
+}
+
+.param_note {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color_white_text);
+    background-color: var(--prism_color_keyword);
+    padding: 0.1rem 0.2rem;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+    user-select: none;
+}
+
+.note_overload {
+    background-color: var(--prism_color_comment);
 }
 
 .function_container {
-    padding: 1rem;
     margin: 1rem 0;
     background-color: var(--function_background_color);
+    width: 100%;
+    height: fit-content;
+}
+
+.function_container:first-of-type{
+    margin-top: 0;
 }
 
 .function_container h2 {
@@ -43,5 +114,11 @@
 
 .function_container p {
     color: var(--function_p);
-    padding-left: calc(var(--item_collum_tab_size) * 2.5);
+    padding-left: calc(var(--item_collum_tab_size) * var(--item_collum_tab_multiply));
+}
+
+.function_container p + p {
+    color: var(--prism_color_comment);
+    padding-left: calc(var(--item_collum_tab_size) * calc(var(--item_collum_tab_multiply) * 2));
+    font-style: italic;
 }

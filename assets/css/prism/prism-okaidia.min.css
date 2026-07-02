@@ -54,6 +54,10 @@ pre[class*=language-] {
   color: var(--prism_color_comment);
 }
 
+.token.unity-type {
+  color: var(--prism_color_unity_type);
+}
+
 .token.punctuation {
   color: #f8f8f2;
 }
@@ -127,10 +131,10 @@ pre[class*=language-] {
 }
 
 .code_container {
-  margin: 1rem 0.2rem 0 0.2rem;
+  margin: 0.5vw;
   background-color: var(--code_background_color);
   border-radius: 0.25rem;
-  padding: 1rem;
+  padding: 1vw;
   box-sizing: border-box;
 }
 

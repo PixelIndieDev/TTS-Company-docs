@@ -192,6 +192,7 @@ async function fetchFolderGrouped(folderUrl) {
 
 async function fetchAndRender(e, t) {
   if (!contentElement) return !1;
+  contentElement.classList.remove('is-loaded');
   try {
     var n = await fetch(e);
     if (n.ok) {
@@ -200,12 +201,18 @@ async function fetchAndRender(e, t) {
     
     // on successfull load
     getFileNames().then(files => generateNavButtons(files, "#button_links_api", PREFIX_FUNCTIONS_API));
-
+    
+    requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
     return !0;
   }
     throw new Error("Failed to load " + e)
   } catch (e) {
-    return console.error(e), t && (contentElement.innerHTML = t), !1
+    console.error(e);
+    if (t) {
+      contentElement.innerHTML = t;
+      requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
+    }
+    return !1;
   }
 }
 
@@ -223,6 +230,7 @@ async function loadContent(pageName, updateHistory = true) {
   } else if (contentElement) {
     const escaped = escapeHTML(pageName);
     contentElement.innerHTML = `<h2>404 - Page Not Found</h2><p>The requested page "${escaped}" does not exist.</p>`;
+    requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
   }
 }
 

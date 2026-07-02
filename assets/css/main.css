@@ -50,12 +50,19 @@ html, body {
     color: var(--color_white_text);
 }
 
+#header_id {
+    display: flex;
+    min-width: 90vw;
+    height: 4rem;
+    justify-content: space-around;
+}
+
 header > div {
     display: flex;
     justify-content: space-around;
     min-width: 90vw;
-    height: 2rem;
     margin: 3vh 2vw;
+    height: 4rem;
 }
 
 header > div a {
@@ -78,7 +85,7 @@ h2 {
 }
 
 #content {
-    margin-top: 5rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     align-items: flex-start;

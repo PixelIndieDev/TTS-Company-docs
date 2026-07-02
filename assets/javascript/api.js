@@ -194,7 +194,7 @@ async function fetchAndRender(e, t) {
   if (!contentElement) return !1;
   try {
     var n = await fetch(e);
-   if (n.ok) {
+    if (n.ok) {
     contentElement.innerHTML = await n.text();
     highlightCode();
     

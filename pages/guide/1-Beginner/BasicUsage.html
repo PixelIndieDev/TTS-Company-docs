@@ -1,0 +1,71 @@
+<div class="function_container">
+    <div class="alert important">
+        <h1>Important</h1>
+        <h2>The example code omits null checks to keep things easy to follow. Add appropriate null checks in your own code.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>This guide assumes you're using one of the four default TTS voice models, which are already loaded and ready to use.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h2 id="func_title"></h2>
+        <h3>Add a TTS audio source to the network object you want to let speak.</h3>
+            <p>In this example, we'll make the local player speak.</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    // Get the player
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    // Add a TTS audio source
+                    // We'll use the global audio source
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+                </code>
+            </pre>
+         </div>
+    </div>
+
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>Now let's make the player speak the line: "This is a testing text-to-speech voice line."</h3>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    // Get the player
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    // Add a TTS audio source
+                    // We'll use the global audio source
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+
+                    // Now make the player speak
+                    // This uses the player's global TTS audio source
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(speakingPlayer.gameObject, "This is a testing text-to-speech voice line.");
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>That's it.</h3>
+        <p>You've now made a network object speak TTS.</p>
+    </div>
+</div>

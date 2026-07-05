@@ -1,102 +1,156 @@
-// Constants
+// Configuration Configuration mapping out types, prefixes, home paths, and asset locations
 const HARDCODED_HOME = `<p>UNKNOWN DEFAULT TEXT</p>`;
-const HOMEPAGE_CONTENT_DEFAULT = 'pages/api_home.html';
+const ACRONYMS = ['TTS', 'API'];
 
-const PREFIX_FUNCTIONS_API = 'F_api_';
-const PREFIX_FUNCTIONS_UTILS = 'F_utils_';
+const PAGE_CONFIG = {
+  api: {
+    prefix: 'F_api_',
+    home: 'pages/api_home.html',
+    dir: 'pages/functions/api/',
+    fetchUrl: '/pages/functions/api/',
+    postfix: '()'
+  },
+  utils: {
+    prefix: 'F_utils_',
+    home: 'pages/utils_home.html',
+    dir: 'pages/functions/utils/',
+    fetchUrl: '/pages/functions/utils/',
+    postfix: '()'
+  },
+  parts: {
+    prefix: 'P_parts_',
+    home: 'pages/parts_home.html',
+    dir: 'pages/parts/',
+    fetchUrl: '/pages/parts/',
+    postfix: ''
+  },
+  gettingstarted: {
+    prefix: 'G_guide_',
+    home: 'pages/getting_started_home.html',
+    dir: 'pages/guide/',
+    fetchUrl: '/pages/guide/',
+    postfix: ''
+  }
+};
+
+const variablesToCheckContent = [
+  'networkObjectRefOfSpeaker', 
+  'objectRefOfSpeaker', 
+  'useGlobalAudioSource', 
+  'audioSourceSettings', 
+  'textsToSpeak', 
+  'textToSpeak', 
+  'voiceSettings'
+];
 
 const contentElement = document.getElementById('replaceableContent');
+const wholeContentElement = document.getElementById('content');
+
+function getCurrentPageKey() {
+  const path = window.location.pathname.toLowerCase();
+  return Object.keys(PAGE_CONFIG).find(key => path.includes(`${key}_docs`)) || null;
+}
+
+function getHomePageUrl() {
+  const currentKey = getCurrentPageKey();
+  return currentKey ? PAGE_CONFIG[currentKey].home : HARDCODED_HOME;
+}
 
 function resolveFilePath(pageName) {
-  if (pageName.startsWith(PREFIX_FUNCTIONS_API)) {
-    return `pages/functions/api/${pageName.slice(6)}.html`;
-  }
-  if (pageName.startsWith(PREFIX_FUNCTIONS_UTILS)) {
-    return `pages/functions/utils/${pageName.slice(8)}.html`;
+  for (const config of Object.values(PAGE_CONFIG)) {
+    if (pageName.startsWith(config.prefix)) {
+      const plainFileName = pageName.slice(config.prefix.length);
+      return `${config.dir}${plainFileName}.html`;
+    }
   }
   return `${pageName}.html`;
 }
 
-function escapeHTML(e) {
-  return e.replace(/[&<>"']/g, e => ({
+function escapeHTML(str) {
+  const entityMap = {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;"
-  })[e])
+  };
+  return str.replace(/[&<>"']/g, match => entityMap[match]);
 }
 
 function highlightCode() {
-  "undefined" != typeof Prism && "function" == typeof Prism.highlightAll && Prism.highlightAll()
+  if (typeof Prism !== "undefined" && typeof Prism.highlightAll === "function") {
+    Prism.highlightAll();
+  }
 }
 
-async function getFileNames() {
-  const cachedFiles = sessionStorage.getItem('apiFileNamesGrouped');
+async function getFileNames(type) {
+  const cacheKey = `${type}FileNamesGrouped`;
+  const cachedFiles = sessionStorage.getItem(cacheKey);
+  
   if (cachedFiles) {
     return JSON.parse(cachedFiles);
   }
 
-  const baseUrl = '/pages/functions/api/';
+  const baseUrl = PAGE_CONFIG[type]?.fetchUrl;
+  if (!baseUrl) return {};
+
   const grouped = await fetchFolderGrouped(baseUrl);
-  sessionStorage.setItem('apiFileNamesGrouped', JSON.stringify(grouped));
+  sessionStorage.setItem(cacheKey, JSON.stringify(grouped));
   return grouped;
 }
 
 function getFriendlyName(fileName) {
   if (!fileName) return '';
 
-  let spaced = fileName
+  const spaced = fileName
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
     .replace(/([0-9])([a-zA-Z])/g, '$1 $2')
     .replace(/([a-zA-Z])([0-9])/g, '$1 $2');
 
-  let words = spaced.split(' ');
-
-  return words.map((word, index) => {
+  return spaced.split(' ').map((word, index) => {
+    const upperWord = word.toUpperCase();
+    if (ACRONYMS.includes(upperWord)) {
+      return upperWord;
+    }
     if (index === 0) {
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }
-    
-    const acronyms = ['TTS'];
-    if (acronyms.includes(word.toUpperCase())) {
-      return word.toUpperCase();
     }
     return word.toLowerCase();
   }).join(' ');
 }
 
-function generateNavButtons(groupedFiles, containerSelector, prefix) {
+function generateNavButtons(groupedFiles, containerSelector, prefix, postfix) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     console.error(`Container with selector "${containerSelector}" not found.`);
     return;
   }
+
   const folderOrder = Object.keys(groupedFiles).sort((a, b) => {
     if (a === 'root') return -1;
     if (b === 'root') return 1;
     return a.localeCompare(b);
   });
 
-  const html = folderOrder.map(folderName => {
+  container.innerHTML = folderOrder.map(folderName => {
     const files = groupedFiles[folderName];
     if (!files || !files.length) return '';
 
     const buttonsHTML = files.map(filePath => {
-      const displayName = filePath.includes('/') ? filePath.split('/').pop() : filePath;
-      return `<button class="nav-btn" data-page="${prefix}${filePath}">${displayName}()</button>`;
+      displayName = filePath.includes('/') ? filePath.split('/').pop() : filePath;
+      if (prefix === PAGE_CONFIG.gettingstarted.prefix) displayName = getFriendlyName(displayName);
+      return `<button class="nav-btn" data-page="${prefix}${filePath}">${displayName}${postfix}</button>`;
     }).join('');
 
     if (folderName === 'root') {
       return buttonsHTML;
     }
 
-    const folderHeader = `<h4>${escapeHTML(folderName)}</h4>`;
-    return `${folderHeader}<div class="nav_folder_group">${buttonsHTML}</div>`;
-  }).join('');
+    const cleanFolderName = folderName.replace(/^(\d+)-/, '');
 
-  container.innerHTML = html;
+    return `<h4>${escapeHTML(cleanFolderName)}</h4><div class="nav_folder_group">${buttonsHTML}</div>`;
+  }).join('');
 }
 
 function updateFunctionTitle(pageName) {
@@ -108,10 +162,11 @@ function updateFunctionTitle(pageName) {
   }
 
   let fileName = pageName;
-  if (fileName.startsWith(PREFIX_FUNCTIONS_API)) {
-    fileName = fileName.slice(PREFIX_FUNCTIONS_API.length);
-  } else if (fileName.startsWith(PREFIX_FUNCTIONS_UTILS)) {
-    fileName = fileName.slice(PREFIX_FUNCTIONS_UTILS.length);
+  for (const config of Object.values(PAGE_CONFIG)) {
+    if (fileName.startsWith(config.prefix)) {
+      fileName = fileName.slice(config.prefix.length);
+      break;
+    }
   }
 
   if (fileName.includes('/')) {
@@ -147,6 +202,7 @@ async function fetchFolderGrouped(folderUrl) {
         const rawFileName = href.split('/').pop();
         const decodedName = decodeURIComponent(rawFileName);
         const fileName = decodedName.replace(/\.html$/i, '');
+        
         if (!grouped['root']) grouped['root'] = [];
         grouped['root'].push(fileName);
       }
@@ -178,8 +234,8 @@ async function fetchFolderGrouped(folderUrl) {
         if (files.length) {
           grouped[folderName] = files;
         }
-      } catch (error) {
-        console.error(`Could not fetch subfolder contents for ${folderName}:`, error);
+      } catch (subError) {
+        console.error(`Could not fetch subfolder contents for ${folderName}:`, subError);
       }
     }
 
@@ -190,38 +246,69 @@ async function fetchFolderGrouped(folderUrl) {
   }
 }
 
-async function fetchAndRender(e, t) {
-  if (!contentElement) return !1;
-  contentElement.classList.remove('is-loaded');
+async function fetchAndRender(url, fallbackHtml = null) {
+  if (!contentElement) return false;
+  if (!wholeContentElement) return false;
+  wholeContentElement.classList.remove('is-loaded');
+
   try {
-    var n = await fetch(e);
-    if (n.ok) {
-    contentElement.innerHTML = await n.text();
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to load URL asset target: ${url}`);
+    }
+
+    contentElement.innerHTML = await response.text();
     highlightCode();
     
-    // on successfull load
-    getFileNames().then(files => generateNavButtons(files, "#button_links_api", PREFIX_FUNCTIONS_API));
-    
-    requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
-    return !0;
-  }
-    throw new Error("Failed to load " + e)
-  } catch (e) {
-    console.error(e);
-    if (t) {
-      contentElement.innerHTML = t;
-      requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
+    const currentKey = getCurrentPageKey();
+    if (currentKey && PAGE_CONFIG[currentKey]) {
+      const config = PAGE_CONFIG[currentKey];
+      const selector = `#button_links_${currentKey}`;
+      
+      getFileNames(currentKey).then(files => {
+        generateNavButtons(files, selector, config.prefix, config.postfix);
+      });
     }
-    return !1;
+
+    await loadContentVariables();
+    requestAnimationFrame(() => wholeContentElement.classList.add('is-loaded'));
+    return true;
+
+  } catch (error) {
+    console.error(error);
+    if (fallbackHtml) {
+      contentElement.innerHTML = fallbackHtml;
+      requestAnimationFrame(() => wholeContentElement.classList.add('is-loaded'));
+    }
+    return false;
   }
+}
+
+async function loadContentVariables() {
+  const fetchPromises = variablesToCheckContent.map(async (variable) => {
+    try {
+      const response = await fetch(`pages/variables/${variable}.html`);
+      if (response.ok) {
+        const fileContent = await response.text();
+        document.querySelectorAll(`.variable_${variable}`).forEach(element => {
+          element.innerHTML = fileContent;
+        });
+      }
+    } catch (error) {
+      console.error(`Failed to load content variable: ${variable}`, error);
+    }
+  });
+
+  await Promise.all(fetchPromises);
 }
 
 async function loadContent(pageName, updateHistory = true) {
   if (!pageName) return;
+  
   const success = await fetchAndRender(resolveFilePath(pageName));
   
   if (updateHistory) {
-    const newUrl = window.location.pathname + "?page=" + pageName;
+    const newUrl = `${window.location.pathname}?page=${pageName}`;
     history.pushState({ page: pageName }, "", newUrl);
   }
 
@@ -230,22 +317,32 @@ async function loadContent(pageName, updateHistory = true) {
   } else if (contentElement) {
     const escaped = escapeHTML(pageName);
     contentElement.innerHTML = `<h2>404 - Page Not Found</h2><p>The requested page "${escaped}" does not exist.</p>`;
-    requestAnimationFrame(() => contentElement.classList.add('is-loaded'));
+    requestAnimationFrame(() => wholeContentElement.classList.add('is-loaded'));
   }
 }
 
-async function handleRouting(e) {
-  e ? await loadContent(e, !1) : await fetchAndRender(HOMEPAGE_CONTENT_DEFAULT, HARDCODED_HOME)
+async function handleRouting(pageName) {
+  if (pageName) {
+    await loadContent(pageName, false);
+  } else {
+    await fetchAndRender(getHomePageUrl(), HARDCODED_HOME);
+  }
 }
 
-document.addEventListener("click", e => {
-  e = e.target.closest(".nav-btn");
-  e && loadContent(e.getAttribute("data-page"))
-}), window.addEventListener("popstate", e => {
-  handleRouting(e.state ? e.state.page : new URLSearchParams(window.location.search).get("page"))
-}), window.addEventListener("DOMContentLoaded", () => {
-  var e = new URLSearchParams(window.location.search).get("page");
-  history.replaceState({
-    page: e
-  }, "", window.location.search), handleRouting(e)
+document.addEventListener("click", event => {
+  const targetBtn = event.target.closest(".nav-btn");
+  if (targetBtn) {
+    loadContent(targetBtn.getAttribute("data-page"));
+  }
+});
+
+window.addEventListener("popstate", event => {
+  const fallbackPage = new URLSearchParams(window.location.search).get("page");
+  handleRouting(event.state ? event.state.page : fallbackPage);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const initialPage = new URLSearchParams(window.location.search).get("page");
+  history.replaceState({ page: initialPage }, "", window.location.search);
+  handleRouting(initialPage);
 });

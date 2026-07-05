@@ -1,0 +1,89 @@
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h2 id="func_title"></h2>
+        <h3>Reference the TTS Company DLL</h3>
+            <p>Before you can call any TTS Company functions, add a reference to the TTS Company DLL in your mod project.</p>
+
+        <p>In Visual Studio:</p>
+
+        <ol>
+            <li>In the <strong>Solution Explorer</strong>, right-click <strong>References</strong> (or <strong>Dependencies</strong>, depending on your project type) under your project.</li>
+            <li>Select <strong>Add Project Reference...</strong></li>
+            <li>In the dialog that opens, click <strong>Browse...</strong> in the bottom-left corner.</li>
+            <li>Navigate to wherever <code>TTSCompany.dll</code> is located on your machine, commonly your game's <code>BepInEx\plugins</code> folder, select it, and click <strong>Add</strong>.</li>
+            <li>Make sure the checkbox next to <code>TTSCompany.dll</code> is ticked, then click <strong>OK</strong>.</li>
+        </ol>
+
+        <p>Then add the following to the top of any file that uses the API:</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    using TTSCompany;
+                </code>
+            </pre>
+         </div>
+    </div>
+
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>Declare the dependency in your BepInPlugin</h3>
+            <p>So BepInEx loads TTS Company before your mod, add a <code>[BepInDependency]</code> attribute above your plugin class, referencing the TTS Company plugin GUID:</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    [BepInPlugin(MyPlugin.PLUGIN_GUID, MyPlugin.PLUGIN_NAME, MyPlugin.PLUGIN_VERSION)]
+                    [BepInDependency("com.pixelindiedev.ttscompany")]
+                    public class MyPlugin : BaseUnityPlugin
+                    {
+                        // ...
+                    }
+                </code>
+            </pre>
+         </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>Add the dependency to your manifest.json</h3>
+            <p>If you're distributing your mod through Thunderstore, list TTS Company as a dependency in your <code>manifest.json</code> so it's installed automatically alongside your mod:</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">JSON</span>
+            </div>
+            <pre>
+                <code class="language-json">
+                    {
+                        "name": "YourModName",
+                        "version_number": "1.0.0",
+                        "website_url": "",
+                        "description": "Your mod description",
+                        "dependencies": [
+                            "PixelIndieDev-TTSCompany-1.0.0"
+                        ]
+                    }
+                </code>
+            </pre>
+         </div>
+
+        <p>The dependency string follows the format <code>TeamName-PackageName-Version</code>. Make sure the version number matches (or is compatible with) the TTS Company release you built against.</p>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>That's it.</h3>
+        <p>You've now made a network object speak TTS.</p>
+    </div>
+</div>

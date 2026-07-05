@@ -1,0 +1,79 @@
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>The float values are rounded to 2 decimals.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+            <h3>Wraps Unity's AudioSource settings so you can control how the generated TTS audio is played back.</h3>
+
+        <h4>Inputs</h4>
+            <h5>BypassEffects</h5>
+                <p>If true, skips any audio filter effects (e.g. reverb, distortion) applied to this audio source's GameObject</p>
+                    <p>Default: false</p>
+            <h5>BypassListenerEffects</h5>
+                <p>If true, skips any effects applied to the Audio Listener</p>
+                    <p>Default: false</p>
+            <h5>BypassReverbZones</h5>
+                <p>If true, ignores any reverb zones the audio would otherwise pass through</p>
+                    <p>Default: false</p>
+            <h5>Priority</h5>
+                <p>Playback priority relative to other sounds (Lower values are higher priority, 0 is highest priority, 256 is lowest)</p>
+                    <p>Default: 128</p>
+                    <p>Min: 0</p>
+                    <p>Max: 256</p>
+            <h5>Volume</h5>
+                <p>The playback volume</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>SpatialBlend</h5>
+                <p>How much the sound is treated as 3D (positional) versus 2D (0.0 is fully 2D, 1.0 is fully 3D/spatial)</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>ReverbZoneMix</h5>
+                <p>How much of the audio signal is routed to reverb zones</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>DopplerLevel</h5>
+                <p>How strong the Doppler effect is when the source or listener is moving</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>MinDistance</h5>
+                <p>The distance within which the sound stays at full volume without attenuating (3D sounds only)</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 128.0f</p>
+            <h5>MaxDistance</h5>
+                <p>The distance beyond which the sound stops attenuating further (3D sounds only)</p>
+                    <p>Default: 40.0f</p>
+                    <p>Min: 1.0f</p>
+                    <p>Max: 128.0f</p>
+            <h5>RolloffMode</h5>
+                <p>How the volume fades out with distance between MinDistance and MaxDistance (e.g. Linear, Logarithmic, or Custom)</p>
+                    <p>Default: AudioRolloffMode.Linear</p>
+            <h5>OutputAudioMixerGroup</h5>
+                <p>The Audio Mixer Group this source routes its output through, if any</p>
+                    <p>Default: null</p>
+            <h5>CustomCurve</h5>
+                <p>A custom volume-over-distance curve, used when RolloffMode is set to Custom</p>
+                    <p>Default: null</p>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C#</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public sealed class TTSAudioSourceSettings
+            </code>
+        </pre>
+    </div>
+</div>

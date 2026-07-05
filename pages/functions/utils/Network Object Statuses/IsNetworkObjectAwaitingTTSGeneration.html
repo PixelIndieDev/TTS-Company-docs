@@ -1,0 +1,38 @@
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+        <h3>Checks whether a network object is currently waiting on TTS audio to finish generating.</h3>
+
+        <h4>Inputs</h4>
+            <h5>networkObject <span class="param_note note_overload">Overload 1</span></h5>
+                <p>The NetworkObject to check</p>
+
+            <h5>gameObject <span class="param_note note_overload">Overload 2</span></h5>
+                <p>The GameObject to check</p>
+
+        <h4>Returns</h4>
+            <p>true if the object is currently waiting on TTS generation to complete, false otherwise</p>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 1)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static bool IsNetworkObjectAwaitingTTSGeneration(NetworkObject networkObject)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 2)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static bool IsNetworkObjectAwaitingTTSGeneration(GameObject gameObject)
+            </code>
+        </pre>
+    </div>
+</div>

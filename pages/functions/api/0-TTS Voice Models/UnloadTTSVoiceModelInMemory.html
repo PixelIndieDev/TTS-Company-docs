@@ -1,31 +1,31 @@
 <div class="function_container">
     <div class="alert note">
         <h1>Note</h1>
-        <h2>You don't need to worry about managing system memory usage with the amount of TTS voices loaded in. This library does that automatically.</h2>
+        <h2>Memory usage for loaded TTS voices is managed automatically, you don't need to track it yourself.</h2>
     </div>
 </div>
 
 <div class="function_container">
     <div class="alert note">
         <h1>Note</h1>
-        <h2>You don't need to worry about unloading TTS voices that are wanted by other mods. This library handles that automatically.</h2>
+        <h2>Voices still needed by other mods won't be unloaded, this is handled automatically.</h2>
     </div>
 </div>
 
 <div class="function_container">
     <div class="function_container_text_part">
         <h2 id="func_title"></h2>
-        <h3>Asynchronously unloads a previously loaded TTS voice model from system memory.</h3>
+        <h3>Asynchronously unloads a previously loaded TTS voice model from memory.</h3>
 
         <h4>Inputs</h4>
             <h5>voiceModelName</h5>
-                <p>The file name of the voice model to unload</p>
+                <p>The file name of the .onnx voice model to unload</p>
 
         <h4>Returns</h4>
             <h5>Success</h5>
-                <p>true if the model was successfully unloaded, false otherwise</p>
+                <p>true if the model unloaded successfully, false otherwise</p>
             <h5>Error</h5>
-                <p>An error message if the operation failed, "ok" if successful</p>
+                <p>"ok" if the operation succeeded, or an error message describing what went wrong</p>
     </div>
 
     <div class="code_container">

@@ -1,0 +1,53 @@
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>The float values are rounded to 2 decimals.</h2>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+
+        <h4>Inputs</h4>
+            <h5>ModelName</h5>
+                <p>The file name of the .onnx voice model to use for speech generation</p>
+                    <p>Default: ExampleConstants.VOICE_MODEL_NAME</p>
+            <h5>SpeechRate</h5>
+                <p>Multiplier for how fast the voice speaks (values below 1.0 speed up speech, values above 1.0 slow it down, e.g. 0.5 = twice as fast, 2.0 = half speed)</p>
+                    <p>Default: 1.0f</p>
+                    <p>Min: 0.05f</p>
+                    <p>Max: 5.0f</p>
+            <h5>NoiseScale</h5>
+                <p>Controls pitch and intonation variation (higher values make the voice sound more expressive and varied, lower values make it more flat and monotone)</p>
+                    <p>Default: 0.67f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>NoiseScaleW</h5>
+                <p>Controls variation in phoneme timing and pacing (higher values add natural rhythmic variety, lower values produce a stiffer more robotic cadence)</p>
+                    <p>Default: 0.8f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 1.0f</p>
+            <h5>SentenceSilence</h5>
+                <p>The pause, in seconds, inserted after sentence-ending punctuation ("!", ".", "?", etc)</p>
+                    <p>Default: 0.2f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 5.0f</p>
+            <h5>PunctuationSilence</h5>
+                <p>The pause, in seconds, inserted after mid-sentence punctuation (",", ":", ";", etc)</p>
+                    <p>Default: 0.08f</p>
+                    <p>Min: 0.0f</p>
+                    <p>Max: 2.5f</p>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C#</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public sealed class PiperVoiceSettings
+            </code>
+        </pre>
+    </div>
+</div>

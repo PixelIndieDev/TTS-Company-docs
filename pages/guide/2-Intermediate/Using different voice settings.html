@@ -1,0 +1,94 @@
+<div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>These voice models are loaded by default and don't need to be preloaded manually:</h2>
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    "en_US-hfc_female-medium"
+                    "en_US-hfc_male-medium"
+                    "en_US-ryan-medium"
+                    "en_US-sam-medium"
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h2 id="func_title"></h2>
+        <h3>Using different voice settings.</h3>
+            <p>We'll continue from the example in Basic Usage.</p>
+            <br>
+            <p>First, let's create a new PiperVoiceSettings object.</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+
+                    // Create a PiperVoiceSettings object
+                    PiperVoiceSettings newVoiceSettings = new PiperVoiceSettings();
+
+                    // Don't forget to pass the new voice settings into the speak function
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(speakingPlayer.gameObject, "This is a testing text-to-speech voice line.", voiceSettings: newVoiceSettings);
+                </code>
+            </pre>
+         </div>
+    </div>
+
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>Now let's make some changes</h3>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+
+                    // Create a PiperVoiceSettings object
+                    PiperVoiceSettings newVoiceSettings = new PiperVoiceSettings();
+                    // Switch to a different voice model
+                    // We'll use one of the default loaded models: 'en_US-ryan-medium'
+                    newVoiceSettings.ModelName = "en_US-ryan-medium";
+                    // Make the speech rate slightly slower than normal
+                    newVoiceSettings.SpeechRate = 1.2f;
+                    // Increase pitch and intonation variance for more expressiveness
+                    newVoiceSettings.NoiseScale = 0.8f;
+                    // Reduce phoneme timing variance for a slightly more rigid cadence
+                    newVoiceSettings.NoiseScaleW = 0.5f;
+                    // Add a 0.5 second pause before each new sentence
+                    newVoiceSettings.SentenceSilence = 0.5f;
+                    // Remove pauses after commas and other mid-sentence punctuation
+                    newVoiceSettings.PunctuationSilence = 0.0f;
+
+                    // Don't forget to pass the new voice settings into the speak function
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(speakingPlayer.gameObject, "This is a testing text-to-speech voice line.", voiceSettings: newVoiceSettings);
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>That's it.</h3>
+        <p>The TTS will now speak using your new voice settings.</p>
+    </div>
+</div>

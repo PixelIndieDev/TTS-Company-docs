@@ -1,24 +1,24 @@
 <div class="function_container">
     <div class="alert note">
         <h1>Note</h1>
-        <h2>You don't need to worry about managing system memory usage with the amount of TTS voices loaded in. This library does that automatically.</h2>
+        <h2>Memory usage for loaded TTS voices is managed automatically, you don't need to track it yourself.</h2>
     </div>
 </div>
 
 <div class="function_container">
     <div class="function_container_text_part">
         <h2 id="func_title"></h2>
-        <h3>Asynchronously loads a TTS voice model into system memory.</h3>
+        <h3>Asynchronously loads a TTS voice model into memory so it's ready to generate speech.</h3>
 
         <h4>Inputs</h4>
             <h5>voiceModelName</h5>
-                <p>The file name of the voice model to preload</p>
+                <p>The file name of the .onnx voice model to load</p>
 
         <h4>Returns</h4>
             <h5>Success</h5>
-                <p>true if the model was successfully preloaded, false otherwise</p>
+                <p>true if the model loaded successfully, false otherwise</p>
             <h5>Error</h5>
-                <p>An error message if the operation failed, "ok" if successful</p>
+                <p>"ok" if the operation succeeded, or an error message describing what went wrong</p>
     </div>
     
     <div class="code_container">
@@ -43,7 +43,7 @@
             </div>
             <pre>
                 <code class="language-csharp">
-                    // In your mod's Awake() method, preload the voice model
+                    // Preload the voice model in your mod's Awake() method
                     await TTSCompanyAPI.PreloadTTSVoiceModelInMemory("en_US-hfc_female-medium");
                 </code>
             </pre>
@@ -54,7 +54,7 @@
 <div class="function_container">
     <div class="alert note">
         <h1>Note</h1>
-        <h2>The following voice models are loaded by default:</h2>
+        <h2>These voice models are loaded by default and don't need to be preloaded manually:</h2>
         <div class="code_container">
             <div class="header">
                 <span class="title">C#</span>

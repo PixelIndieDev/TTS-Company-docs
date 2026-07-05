@@ -11,9 +11,27 @@
     --button_height: calc(var(--button_width)* 0.5);
     --button_margin: 0.4rem;
 
+    --button_height_header: calc(var(--button_height)* 0.75);
+    --button_padding_header: 0.4rem 1rem;
+
     --alerts_tip_color: #188131;
     --alerts_note_color: #0c67d8;
     --alerts_important_color: #8253de;
+
+    --prism_color_keyword: #529cd6;
+    --prism_color_return_type: #44b8a3;
+    --prism_color_function: #dcdcaa;
+    --prism_color_unity_type: #37b8b0;
+
+    --prism_color_default_text: #9bdcfe;
+    --prism_color_comment: #57a64a;
+    --prism_color_string: #d69d85;
+
+    --color_h1_dark: color-mix(in srgb, var(--color_h1), #000 30%);
+    --color_API_dark: color-mix(in srgb, var(--prism_color_function), #000 30%);
+    --color_Parts_dark: color-mix(in srgb, var(--prism_color_unity_type), #000 30%);
+    --color_Github_dark: color-mix(in srgb, var(--color_white_text), #000 30%);
+    --color_Guide_dark: color-mix(in srgb, var(--prism_color_string), #000 30%);
 }
 
 * {
@@ -53,8 +71,7 @@ html, body {
 #header_id {
     display: flex;
     min-width: 90vw;
-    height: 4rem;
-    justify-content: space-around;
+    height: fit-content;
 }
 
 header > div {
@@ -65,13 +82,34 @@ header > div {
     height: 4rem;
 }
 
-header > div a {
-    color: var(--color_white_text);
+header a.button {
     font-weight: bold;
+    display: inline-block;
+    width: fit-content;
+    height: var(--button_height_header);
+    line-height: var(--button_height_header);
+    color: var(--color_white_text);
+    background-color: var(--color_h1_dark);
+    padding: var(--button_padding_header);
+    border-radius: 4rem;
+    text-align: center;
+    margin: var(--button_margin);
 }
 
-header > div a:first-of-type {
-    margin-left: -3rem;
+.header_color_API {
+    background-color: var(--color_API_dark) !important;
+}
+
+.header_color_Parts {
+    background-color: var(--color_Parts_dark) !important;
+}
+
+.color_Github_dark {
+    background-color: var(--color_Github_dark) !important;
+}
+
+.header_color_Guide {
+    background-color: var(--color_Guide_dark) !important;
 }
 
 h1 {
@@ -85,11 +123,21 @@ h2 {
 }
 
 #content {
-    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     view-transition-name: inner_content;
+    transition: opacity 0.75s ease;
+    opacity: 0;
+}
+
+.is-loaded {
+    opacity: 1 !important;
+}
+
+.gettingStarted {
+    display: flex;
+    flex-direction: column;
 }
 
 #replaceableContent {

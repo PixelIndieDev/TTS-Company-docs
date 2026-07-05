@@ -1,0 +1,73 @@
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h2 id="func_title"></h2>
+        <h3>Using different audio source settings.</h3>
+            <p>We'll continue from the example in Basic Usage.</p>
+            <br>
+            <p>First, let's create a new TTSAudioSourceSettings object.</p>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    // You could pass a TTSAudioSourceSettings object directly into AddTTSAudioSourceOnNetworkObject(), but here we'll update the settings afterwards instead
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+
+                    // Create a TTSAudioSourceSettings object
+                    TTSAudioSourceSettings newTTSAudioSettings = new TTSAudioSourceSettings();
+
+                    // Apply the new settings to the player's TTS audio source
+                    TTSCompanyAPI.UpdateTTSAudioSourceSettingsOnNetworkObject(speakingPlayer.gameObject, newTTSAudioSettings);
+
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(speakingPlayer.gameObject, "This is a testing text-to-speech voice line.");
+                </code>
+            </pre>
+         </div>
+    </div>
+
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>Now let's make some changes</h3>
+
+        <div class="code_container">
+            <div class="header">
+                <span class="title">C#</span>
+            </div>
+            <pre>
+                <code class="language-csharp">
+                    PlayerControllerB speakingPlayer = StartOfRound.Instance.localPlayerController;
+
+                    // You could pass a TTSAudioSourceSettings object directly into AddTTSAudioSourceOnNetworkObject(), but here we'll update the settings afterwards instead
+                    TTSCompanyAPI.AddTTSAudioSourceOnNetworkObject(speakingPlayer.gameObject);
+
+                    // Create a TTSAudioSourceSettings object
+                    TTSAudioSourceSettings newTTSAudioSettings = new TTSAudioSourceSettings();
+                    // Lower the volume
+                    newTTSAudioSettings.Volume = 0.5f;
+                    // Make the audio play in 2D instead of 3D
+                    newTTSAudioSettings.SpatialBlend = 0.0f;
+                    // Add some Doppler effect
+                    newTTSAudioSettings.DopplerLevel = 0.75f;
+
+                    // Apply the new settings to the player's TTS audio source
+                    TTSCompanyAPI.UpdateTTSAudioSourceSettingsOnNetworkObject(speakingPlayer.gameObject, newTTSAudioSettings);
+
+                    TTSCompanyAPI.SpeakTTSAtNetworkObject(speakingPlayer.gameObject, "This is a testing text-to-speech voice line.");
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h3>That's it.</h3>
+        <p>The TTS will now play using your new audio settings.</p>
+    </div>
+</div>

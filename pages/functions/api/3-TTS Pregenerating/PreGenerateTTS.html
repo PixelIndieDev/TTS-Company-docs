@@ -1,24 +1,24 @@
 <div class="function_container">
     <div class="alert note">
         <h1>Note</h1>
-        <h2>The textToSpeak input will automatically be split by sentence under the hood.</h2>
+        <h2>Text is automatically split by sentence before generation when inputting a single string.</h2>
     </div>
 </div>
 
 <div class="function_container">
     <div class="function_container_text_part">
         <h2 id="func_title"></h2>
-        <h3>Pre-generates and caches TTS audio lines for instant future use. This will not play the TTS.</h3>
+        <h3>Generates and caches TTS audio lines ahead of time for instant playback later. This does not play any audio.</h3>
 
         <h4>Inputs</h4>
             <h5>textsToSpeak <span class="param_note note_overload">Overload 1</span></h5>
-                <p>An array of strings containing the text lines to be converted to speech</p>
+                <p class="variable_textsToSpeak"></p>
 
             <h5>textToSpeak <span class="param_note note_overload">Overload 2</span></h5>
-                <p>A string containing the text lines to be converted to speech</p>
+                <p class="variable_textToSpeak">A string containing the text lines to be converted to speech</p>
 
             <h5>voiceSettings <span class="param_note">optional</span></h5>
-                <p>PiperVoiceSettings object containing configuration options for the voice parameters (speaking rate, voice model, etc.)</p>
+                <p class="variable_voiceSettings"></p>
 
         <h4>Returns</h4>
             <h5>None</h5>
@@ -58,14 +58,14 @@
             </div>
             <pre>
                 <code class="language-csharp">
-                    // This is best used for TTS that needs instant play, like for example reactions.
-                    // See below for an example
+                    // Use this to pre-cache lines that need to play instantly, like reactions
+                    // See the example below.
 
                     // In your mod's Awake() method
-                    // Depending on your use Awake() might not always be the best option.
+                    // Awake() isn't always the right place. Pick what fits your mod's usage.
                     await TTSCompanyAPI.PreloadTTSVoiceModelInMemory("en_US-hfc_female-medium");
                     
-                    // Generate the TTS early
+                    // Generate the TTS ahead of time
                     TTSCompanyAPI.PreGenerateTTS("Oh watch out!");
                     TTSCompanyAPI.PreGenerateTTS("Watch out, quicksand!");
                 </code>

@@ -2,9 +2,9 @@
 <html lang="en" style="background: #1b1b1f">
     <head>
         <meta charset="utf-8">
-        <title>TTS Company Docs</title>
+        <title>TTS Company Utils Docs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="The docs for the TTS company mod">
+        <meta name="description" content="The docs for TTSCompanyUtils">
         <meta name="color-scheme" content="dark">
         <meta name="author" content="PixelIndieDev">
 
@@ -12,29 +12,27 @@
         <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg?v=20260703" />
         <link rel="shortcut icon" href="/assets/favicons/favicon.ico?v=20260703" />
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=20260703" />
-        <meta name="apple-mobile-web-app-title" content="TTS Company Docs" />
+        <meta name="apple-mobile-web-app-title" content="TTS Company Utils Docs" />
         <link rel="manifest" href="/assets/favicons/site.webmanifest?v=20260703" />
 
         <link rel="stylesheet" href="assets/css/main.css" media="all">
+        <link rel="stylesheet" href="assets/css/api.css" media="all">
+        <link rel="stylesheet" href="assets/css/prism/prism-okaidia.min.css" />
     </head>
 
     <body>
         <header id="header_id"></header>
 
         <div id="content">
-            <div id="home_content">
-                <h1>Welcome to the TTS Company Docs</h1>
-                <h2>Learn how to use the TTSCompanyAPI</h2>
-
-                <div>
-                    <a href="api_docs.html" class="button">API Docs</a>
-                    <a href="utils_docs.html" class="button">Utils Docs</a>
-                    <a href="parts_docs.html" class="button">Parts Docs</a>
-                </div>
+            <div class="api_content">
+                <h3>TTSCompanyUtils</h3>
+                <div class="button_links_sidebar" id="button_links_utils"></div>
             </div>
+            <div id="replaceableContent"></div>
         </div>
 
         <script src="assets/javascript/main.js"></script>
-        <script src="assets/javascript/mainWorkaround.js"></script>
+        <script src="assets/javascript/prism/prism.min.js"></script>
+        <script src="assets/javascript/api.js"></script>
     </body>
 </html>

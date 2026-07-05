@@ -46,6 +46,8 @@ const variablesToCheckContent = [
 const contentElement = document.getElementById('replaceableContent');
 const wholeContentElement = document.getElementById('content');
 
+const REPO_BASE = window.location.hostname.includes('github.io') ? `/${window.location.pathname.split('/')[1]}/` : '/';
+
 function getCurrentPageKey() {
   const path = window.location.pathname.toLowerCase();
   return Object.keys(PAGE_CONFIG).find(key => path.includes(`${key}_docs`)) || null;
@@ -53,17 +55,7 @@ function getCurrentPageKey() {
 
 function getHomePageUrl() {
   const currentKey = getCurrentPageKey();
-  return currentKey ? PAGE_CONFIG[currentKey].home : HARDCODED_HOME;
-}
-
-function resolveFilePath(pageName) {
-  for (const config of Object.values(PAGE_CONFIG)) {
-    if (pageName.startsWith(config.prefix)) {
-      const plainFileName = pageName.slice(config.prefix.length);
-      return `${config.dir}${plainFileName}.html`;
-    }
-  }
-  return `${pageName}.html`;
+  return currentKey ? `${REPO_BASE}${PAGE_CONFIG[currentKey].home}` : HARDCODED_HOME;
 }
 
 function escapeHTML(str) {
@@ -85,32 +77,35 @@ function highlightCode() {
 
 async function getFileNames(type) {
   const cacheKey = `${type}FileNamesGrouped`;
-  const cachedFiles = sessionStorage.getItem(cacheKey); 
+  const cachedFiles = sessionStorage.getItem(cacheKey);
+  
   if (cachedFiles) {
     return JSON.parse(cachedFiles);
   }
 
   const config = PAGE_CONFIG[type];
   if (!config) return {};
-  
+
   try {
-    const response = await fetch('files.json');
+    const response = await fetch(`${REPO_BASE}files.json`); 
     if (!response.ok) throw new Error('Failed to fetch files.json');
     
     const allFiles = await response.json();
     const filesList = allFiles[type] || [];
-    const configDir = config.dir;
+    const configDir = config.dir; 
     
     const grouped = {};
 
     filesList.forEach(fullPath => {
       let cleanedPath = fullPath.replace(/^\//, '').replace(/\.html$/i, '');
+      
       if (cleanedPath.startsWith(configDir)) {
         cleanedPath = cleanedPath.slice(configDir.length);
       }
+      
       if (cleanedPath.includes('/')) {
         const parts = cleanedPath.split('/');
-        const immediateParent = parts[parts.length - 2];
+        const immediateParent = parts[parts.length - 2]; 
         
         if (!grouped[immediateParent]) {
           grouped[immediateParent] = [];
@@ -320,7 +315,7 @@ async function fetchAndRender(url, fallbackHtml = null) {
 async function loadContentVariables() {
   const fetchPromises = variablesToCheckContent.map(async (variable) => {
     try {
-      const response = await fetch(`pages/variables/${variable}.html`);
+      const response = await fetch(`${REPO_BASE}pages/variables/${variable}.html`);
       if (response.ok) {
         const fileContent = await response.text();
         document.querySelectorAll(`.variable_${variable}`).forEach(element => {

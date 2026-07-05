@@ -7,28 +7,28 @@ const PAGE_CONFIG = {
     prefix: 'F_api_',
     home: 'pages/api_home.html',
     dir: 'pages/functions/api/',
-    fetchUrl: '/pages/functions/api/',
+    fetchUrl: 'pages/functions/api/',
     postfix: '()'
   },
   utils: {
     prefix: 'F_utils_',
     home: 'pages/utils_home.html',
     dir: 'pages/functions/utils/',
-    fetchUrl: '/pages/functions/utils/',
+    fetchUrl: 'pages/functions/utils/',
     postfix: '()'
   },
   parts: {
     prefix: 'P_parts_',
     home: 'pages/parts_home.html',
     dir: 'pages/parts/',
-    fetchUrl: '/pages/parts/',
+    fetchUrl: 'pages/parts/',
     postfix: ''
   },
   gettingstarted: {
     prefix: 'G_guide_',
     home: 'pages/getting_started_home.html',
     dir: 'pages/guide/',
-    fetchUrl: '/pages/guide/',
+    fetchUrl: 'pages/guide/',
     postfix: ''
   }
 };

@@ -85,18 +85,51 @@ function highlightCode() {
 
 async function getFileNames(type) {
   const cacheKey = `${type}FileNamesGrouped`;
-  const cachedFiles = sessionStorage.getItem(cacheKey);
-  
+  const cachedFiles = sessionStorage.getItem(cacheKey); 
   if (cachedFiles) {
     return JSON.parse(cachedFiles);
   }
 
-  const baseUrl = PAGE_CONFIG[type]?.fetchUrl;
-  if (!baseUrl) return {};
+  const config = PAGE_CONFIG[type];
+  if (!config) return {};
+  
+  try {
+    const response = await fetch('files.json');
+    if (!response.ok) throw new Error('Failed to fetch files.json');
+    
+    const allFiles = await response.json();
+    const filesList = allFiles[type] || [];
+    const configDir = config.dir;
+    
+    const grouped = {};
 
-  const grouped = await fetchFolderGrouped(baseUrl);
-  sessionStorage.setItem(cacheKey, JSON.stringify(grouped));
-  return grouped;
+    filesList.forEach(fullPath => {
+      let cleanedPath = fullPath.replace(/^\//, '').replace(/\.html$/i, '');
+      if (cleanedPath.startsWith(configDir)) {
+        cleanedPath = cleanedPath.slice(configDir.length);
+      }
+      if (cleanedPath.includes('/')) {
+        const parts = cleanedPath.split('/');
+        const immediateParent = parts[parts.length - 2];
+        
+        if (!grouped[immediateParent]) {
+          grouped[immediateParent] = [];
+        }
+        grouped[immediateParent].push(cleanedPath);
+      } else {
+        if (!grouped['root']) {
+          grouped['root'] = [];
+        }
+        grouped['root'].push(cleanedPath);
+      }
+    });
+
+    sessionStorage.setItem(cacheKey, JSON.stringify(grouped));
+    return grouped;
+  } catch (error) {
+    console.error("Could not load or process files.json:", error);
+    return {};
+  }
 }
 
 function getFriendlyName(fileName) {

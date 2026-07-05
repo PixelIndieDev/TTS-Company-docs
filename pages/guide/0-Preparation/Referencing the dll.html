@@ -3,9 +3,7 @@
         <h2 id="func_title"></h2>
         <h3>Reference the TTS Company DLL</h3>
             <p>Before you can call any TTS Company functions, add a reference to the TTS Company DLL in your mod project.</p>
-
         <p>In Visual Studio:</p>
-
         <ol>
             <li>In the <strong>Solution Explorer</strong>, right-click <strong>References</strong> (or <strong>Dependencies</strong>, depending on your project type) under your project.</li>
             <li>Select <strong>Add Project Reference...</strong></li>
@@ -15,7 +13,6 @@
         </ol>
 
         <p>Then add the following to the top of any file that uses the API:</p>
-
         <div class="code_container">
             <div class="header">
                 <span class="title">C#</span>
@@ -42,7 +39,7 @@
             <pre>
                 <code class="language-csharp">
                     [BepInPlugin(MyPlugin.PLUGIN_GUID, MyPlugin.PLUGIN_NAME, MyPlugin.PLUGIN_VERSION)]
-                    [BepInDependency("com.pixelindiedev.ttscompany")]
+                    [BepInDependency("PixelIndieDev_TTSCompany")]
                     public class MyPlugin : BaseUnityPlugin
                     {
                         // ...

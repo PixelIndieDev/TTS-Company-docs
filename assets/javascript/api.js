@@ -1,4 +1,3 @@
-// Configuration Configuration mapping out types, prefixes, home paths, and asset locations
 const HARDCODED_HOME = `<p>UNKNOWN DEFAULT TEXT</p>`;
 const ACRONYMS = ['TTS', 'API'];
 
@@ -56,6 +55,16 @@ function getCurrentPageKey() {
 function getHomePageUrl() {
   const currentKey = getCurrentPageKey();
   return currentKey ? `${REPO_BASE}${PAGE_CONFIG[currentKey].home}` : HARDCODED_HOME;
+}
+
+function resolveFilePath(pageName) {
+  for (const config of Object.values(PAGE_CONFIG)) {
+    if (pageName.startsWith(config.prefix)) {
+      const plainFileName = pageName.slice(config.prefix.length);
+      return `${REPO_BASE}${config.dir}${plainFileName}.html`;
+    }
+  }
+  return `${REPO_BASE}${pageName}.html`;
 }
 
 function escapeHTML(str) {

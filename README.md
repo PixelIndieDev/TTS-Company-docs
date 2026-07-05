@@ -1,2 +1,2 @@
 # TTS-Company-docs
-The wiki page for TTSCompanyAPI
+The docs pages for TTSCompanyAPI

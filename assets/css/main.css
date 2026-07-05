@@ -76,6 +76,7 @@ html, body {
 
 header > div {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     min-width: 90vw;
     margin: 3vh 2vw;
@@ -151,7 +152,7 @@ h2 {
     height: var(--button_height);
     line-height: var(--button_height);
     color: var(--color_white_text);
-    background-color: var(--color_h1);
+    background-color: var(--color_h1_dark);
     border-radius: 4rem;
     text-align: center;
     margin: var(--button_margin);
@@ -171,6 +172,8 @@ button:hover {
 #home_content {
     display: flex;
     flex-direction: column;
+    margin-top: 5rem;
+    min-width: 60vw;
 }
 
 /* alerts */
@@ -215,12 +218,13 @@ button:hover {
     border-left-color: var(--alerts_tip_color) !important;
 }
 
-.tip h1 {
+.tip h1,
+.tip h2 {
     color: var(--alerts_tip_color) !important;
 }
 
-.tip h2 {
-    color: var(--alerts_tip_color) !important;
+.tip a {
+    color: var(--prism_color_comment) !important;
 }
 
 .tip h1::before {
@@ -232,10 +236,7 @@ button:hover {
     border-left-color: var(--alerts_note_color) !important;
 }
 
-.note h1 {
-    color: var(--alerts_note_color) !important;
-}
-
+.note h1,
 .note h2 {
     color: var(--alerts_note_color) !important;
 }
@@ -249,14 +250,56 @@ button:hover {
     border-left-color: var(--alerts_important_color) !important;
 }
 
-.important h1 {
-    color: var(--alerts_important_color) !important;
-}
-
+.important h1,
 .important h2 {
     color: var(--alerts_important_color) !important;
 }
 
 .important h1::before {
     mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5ZM440-440h80v-240h-80v240ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm301.5-598.5Q510-807 510-820t-8.5-21.5Q493-850 480-850t-21.5 8.5Q450-833 450-820t8.5 21.5Q467-790 480-790t21.5-8.5ZM200-200v-560 560Z"/></svg>');
+}
+
+@media (max-width: 900px) {
+    #content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #replaceableContent,
+    #home_content {
+        width: 90vw;
+        min-width: 0;
+    }
+
+    header > div {
+        height: auto;
+        min-height: 4rem;
+    }
+
+    header a.button {
+        margin: 0.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --button_width: 5rem;
+    }
+
+    header > div {
+        margin: 2vh 2vw;
+    }
+
+    header a.button {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
 }

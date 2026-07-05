@@ -29,5 +29,9 @@
     "pages/guide/2-Intermediate/Using different audio source settings",
     "pages/guide/2-Intermediate/Using different voice settings",
     "pages/guide/3-Advanced/Including new TTS audio models"
+  ],
+  "faq": [
+    "pages/faq/Development/Why use PiperTTS",
+    "pages/faq/Inner Workings/Can you explain the TTS audio sources"
   ]
 }

@@ -1,0 +1,27 @@
+<div class="function_container">
+    <div class="function_container_text_part gettingstartedText">
+        <h2 id="func_title"></h2>
+        <h3>Understanding TTS Audio Sources</h3>
+        <p>TTS Company uses two types of audio sources:</p>
+        <br>
+        <ul>
+            <li>
+                <h3>Global TTS Audio Source</h3>
+            </li>
+            <li>
+                <h3>Calling Assembly TTS Audio Source (mod-specific)</h3>
+            </li>
+        </ul>
+
+        <p>Each network object can have only one Global TTS Audio Source, but any number of Calling Assembly TTS Audio Sources, one per mod that adds one.</p>
+        <img src="assets/images/Explain_audio_sources.png" alt="A Lethal Company employee with three arrows from Global, Mod01, Mod02, and Mod03, each showing their own TTS audio source on the same network object">
+
+        <p>If a TTS audio source receives multiple speak requests before it finishes playing, only the most recent request will actually play, earlier ones are cancelled. This applies regardless of whether the requests came from the same mod or different mods.</p>
+        <p>This prevents TTS lines from overlapping and talking over each other on the same source, which is the desired behavior in most cases, for example, when a player character is speaking using TTS.</p>
+        <img src="assets/images/Explain_audio_sources2.png" alt="Two requests arriving at the employee's Global TTS Audio Source. The earlier request is crossed out and cancelled, leaving only the most recent request to play">
+
+        <p>Sometimes, though, you do want TTS lines to be able to overlap. Since each Calling Assembly TTS Audio Source is separate from the Global one, requests made to the different audio sources can play simultaneously without cancelling each other.</p>
+        <p>In the image below, request 3 uses a Calling Assembly TTS Audio Source rather than the Global one, so it plays at the same time as the TTS running on the Global audio source, because they're two independent audio sources.</p>
+        <img src="assets/images/Explain_audio_sources3.png" alt="The employee's Global audio source playing one TTS request while a separate request, Request 3, plays at the same time on Mod01's own Calling Assembly audio source">
+    </div>
+</div>

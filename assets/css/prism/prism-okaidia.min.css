@@ -161,3 +161,33 @@ pre[class*=language-] {
   font-size: var(--code_ehader_font_size);
   font-weight: bold;
 }
+
+@media (max-width: 900px) {
+    .code_container {
+        padding: 0.75rem;
+    }
+
+    pre[class*=language-] {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --code_ehader_font_size: 1.1rem;
+    }
+
+    .code_container {
+        margin: 0.5rem 0;
+        padding: 0.6rem;
+    }
+
+    pre[class*=language-] {
+        font-size: 0.8em;
+        padding: 0.75em;
+    }
+
+    .code_container .header {
+        margin-bottom: 0.6rem;
+    }
+}

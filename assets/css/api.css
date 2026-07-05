@@ -9,10 +9,17 @@
     --item_collum_tab_multiply: 2.5;
 }
 
+img {
+    width: 25vw;
+    max-width: 700px;
+    min-width: 300px;
+}
+
 .api_content {
     display: flex;
     flex-direction: column;
     width: 20rem;
+    max-width: 90vw;
     height: fit-content;
     overflow: hidden;
     justify-content: start;
@@ -54,7 +61,8 @@
     color: var(--prism_color_unity_type);
 }
 
-#button_links_gettingstarted button {
+#button_links_gettingstarted button,
+#button_links_faq button  {
     color: var(--color_h1);
 }
 
@@ -62,9 +70,14 @@
     padding: 1rem;
 }
 
-ol {
+ol,
+ul {
     color: var(--function_p);
     padding: 1rem;
+}
+
+li ul {
+    padding-top: 0;
 }
 
 .overload_text {
@@ -136,4 +149,29 @@ ol {
 .function_container .gettingstartedText p + p {
     color: var(--function_p);
     font-style: normal;
+}
+
+@media (max-width: 900px) {
+    .api_content {
+        width: 100%;
+    }
+
+    .function_container p {
+        padding-left: calc(var(--item_collum_tab_size) * 1.2);
+    }
+
+    .function_container p + p {
+        padding-left: calc(var(--item_collum_tab_size) * 2.4);
+    }
+}
+
+@media (max-width: 600px) {
+    img {
+        width: 60vw;
+        max-width: 220px;
+    }
+
+    .function_container_text_part {
+        padding: 0.75rem;
+    }
 }

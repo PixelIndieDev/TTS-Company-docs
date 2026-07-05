@@ -29,6 +29,13 @@ const PAGE_CONFIG = {
     dir: 'pages/guide/',
     fetchUrl: 'pages/guide/',
     postfix: ''
+  },
+  faq: {
+    prefix: 'faq_',
+    home: 'pages/faq_home.html',
+    dir: 'pages/faq/',
+    fetchUrl: 'pages/faq/',
+    postfix: '?'
   }
 };
 

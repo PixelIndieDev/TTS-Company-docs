@@ -319,33 +319,30 @@ button:active {
     mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5ZM440-440h80v-240h-80v240ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm301.5-598.5Q510-807 510-820t-8.5-21.5Q493-850 480-850t-21.5 8.5Q450-833 450-820t8.5 21.5Q467-790 480-790t21.5-8.5ZM200-200v-560 560Z"/></svg>');
 }
 
-.speed_slow {
+.speed {
   position: relative;
   pointer-events: none;
 }
 
-.speed_slow::after {
+.speed::after {
   content: '';
   position: absolute;
   top: 1rem;
   right: 1rem;
   width: var(--speed_icon_size);
   height: var(--speed_icon_size);
-  mask-image: url('../../assets/images/svg/speed_slow.svg');
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
-  background-color: var(--alerts_important_color);
   cursor: help;
   pointer-events: auto;
 }
 
-.speed_slow::before {
-  content: "This function is a slow operation";
+.speed::before {
+  content: "";
   position: absolute;
   top: 3rem;
   right: 1rem;
-  background-color: var(--alerts_important_color);
   color: var(--color_white_text);
   padding: 0.4rem;
   border-radius: 0.3rem;
@@ -355,8 +352,28 @@ button:active {
   transition: opacity 0.2s ease-in-out;
 }
 
-.speed_slow:hover::before {
+.speed:hover::before {
   opacity: 1;
+}
+
+.speed_slow::after {
+    mask-image: url('../../assets/images/svg/speed_slow.svg');
+    background-color: var(--alerts_important_color);
+}
+
+.speed_slow::before {
+    content: "This function is a slow operation";
+    background-color: var(--alerts_important_color);
+}
+
+.speed_medium::after {
+    mask-image: url('../../assets/images/svg/speed_medium.svg');
+    background-color: var(--alerts_note_color);
+}
+
+.speed_medium::before {
+    content: "This function can take either a second or instant";
+    background-color: var(--alerts_note_color);
 }
 
 @keyframes bounce_right {

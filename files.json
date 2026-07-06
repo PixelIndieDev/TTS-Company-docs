@@ -1,23 +1,23 @@
 {
   "api": [
-    "pages/functions/api/0-TTSVoiceModels/PreloadTTSVoiceModelInMemory",
-    "pages/functions/api/0-TTSVoiceModels/UnloadTTSVoiceModelInMemory",
-    "pages/functions/api/1-TTSAudioSources/AddTTSAudioSourceOnNetworkObject",
-    "pages/functions/api/1-TTSAudioSources/UpdateTTSAudioSourceSettingsOnNetworkObject",
-    "pages/functions/api/1-TTSAudioSources/RemoveTTSAudioSourceOnNetworkObject",
-    "pages/functions/api/2-TTSSpeaking/SpeakTTSAtNetworkObject",
-    "pages/functions/api/3-TTSPregenerating/PreGenerateTTS"
+    "pages/functions/api/0-TTS Voice Models/PreloadTTSVoiceModelInMemory",
+    "pages/functions/api/0-TTS Voice Models/UnloadTTSVoiceModelInMemory",
+    "pages/functions/api/1-TTS Audio Sources/AddTTSAudioSourceOnNetworkObject",
+    "pages/functions/api/1-TTS Audio Sources/UpdateTTSAudioSourceSettingsOnNetworkObject",
+    "pages/functions/api/1-TTS Audio Sources/RemoveTTSAudioSourceOnNetworkObject",
+    "pages/functions/api/2-TTS Speaking/SpeakTTSAtNetworkObject",
+    "pages/functions/api/3-TTS Pregenerating/PreGenerateTTS"
   ],
   "utils": [
-    "pages/functions/utils/NetworkObjectStatuses/GetTTSNetworkObjectState",
-    "pages/functions/utils/NetworkObjectStatuses/IsNetworkObjectAwaitingTTSGeneration",
-    "pages/functions/utils/NetworkObjectStatuses/IsNetworkObjectCurrentlySpeaking",
-    "pages/functions/utils/TTSVoices/GetRandomFoundTTSVoiceName",
-    "pages/functions/utils/TTSVoices/GetRandomLoadedTTSVoicename",
-    "pages/functions/utils/TTSVoices/HasTTSVoiceModelBeenLoadedIntoMemory"
+    "pages/functions/utils/Network Object Statuses/GetTTSNetworkObjectState",
+    "pages/functions/utils/Network Object Statuses/IsNetworkObjectAwaitingTTSGeneration",
+    "pages/functions/utils/Network Object Statuses/IsNetworkObjectCurrentlySpeaking",
+    "pages/functions/utils/TTS Voices/GetRandomFoundTTSVoiceName",
+    "pages/functions/utils/TTS Voices/GetRandomLoadedTTSVoicename",
+    "pages/functions/utils/TTS Voices/HasTTSVoiceModelBeenLoadedIntoMemory"
   ],
   "parts": [
-    "pages/parts/LethalConfig/ConfigOptions",
+    "pages/parts/Lethal Config/Config Options",
     "pages/parts/PiperVoiceSettings",
     "pages/parts/TTSAudioSourceSettings",
     "pages/parts/Constants/APIDefaultsConstants",
@@ -25,19 +25,19 @@
     "pages/parts/Enums/TTSNetworkObjectState"
   ],
   "gettingstarted": [
-    "pages/guide/0-Preparation/Referencingthedll",
+    "pages/guide/0-Preparation/Referencing the dll",
     "pages/guide/1-Beginner/BasicUsage",
-    "pages/guide/2-Intermediate/Usingdifferentaudiosource settings",
-    "pages/guide/2-Intermediate/Usingdifferentvoicesettings",
-    "pages/guide/3-Advanced/IncludingnewTTSaudiomodels"
+    "pages/guide/2-Intermediate/Using different audio source settings",
+    "pages/guide/2-Intermediate/Using different voice settings",
+    "pages/guide/3-Advanced/Including new TTS audio models"
   ],
   "faq": [
-    "pages/faq/Development/WhyusePiperTTS",
-    "pages/faq/Development/HowcanItestifthemodworks",
-    "pages/faq/InnerWorkings/CanyouexplaintheTTSaudiosources",
-    "pages/faq/InnerWorkings/IstheTTSsyncedacrossplayers",
-    "pages/faq/InnerWorkings/Howdoesthecachingwork",
-    "pages/faq/InnerWorkings/Howlongdoesittaketogenerate",
-    "pages/faq/Thunderstore/WhyisthemodmarkedasAI-Generated"
+    "pages/faq/Development/Why use PiperTTS",
+    "pages/faq/Development/How can I test if the mod works",
+    "pages/faq/Inner Workings/Can you explain the TTS audio sources",
+    "pages/faq/Inner Workings/Is the TTS synced across players",
+    "pages/faq/Inner Workings/How does the caching work",
+    "pages/faq/Inner Workings/How long does it take to generate",
+    "pages/faq/Thunderstore/Why is the mod marked as AI-Generated"
   ]
 }

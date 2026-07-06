@@ -17,6 +17,7 @@
     "pages/functions/utils/TTS Voices/HasTTSVoiceModelBeenLoadedIntoMemory"
   ],
   "parts": [
+    "pages/parts/Lethal Config/Config Options",
     "pages/parts/PiperVoiceSettings",
     "pages/parts/TTSAudioSourceSettings",
     "pages/parts/Constants/APIDefaultsConstants",
@@ -32,6 +33,11 @@
   ],
   "faq": [
     "pages/faq/Development/Why use PiperTTS",
-    "pages/faq/Inner Workings/Can you explain the TTS audio sources"
+    "pages/faq/Development/How can I test if the mod works",
+    "pages/faq/Inner Workings/Can you explain the TTS audio sources",
+    "pages/faq/Inner Workings/Is the TTS synced across players",
+    "pages/faq/Inner Workings/How does the caching work",
+    "pages/faq/Inner Workings/How long does it take to generate",
+    "pages/faq/Thunderstore/Why is the mod marked as AI-Generated"
   ]
 }

@@ -38,7 +38,6 @@ pre[class*=language-] {
 :not(pre)>code[class*=language-],
 pre[class*=language-] {
   background: #272822;
-  /* background: var(--code_background_code_part_color); */
 }
 
 :not(pre)>code[class*=language-] {
@@ -160,6 +159,7 @@ pre[class*=language-] {
   color: var(--color_h2);
   font-size: var(--code_ehader_font_size);
   font-weight: bold;
+  cursor: not-allowed;
 }
 
 @media (max-width: 900px) {

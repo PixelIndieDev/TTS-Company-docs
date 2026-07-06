@@ -4,6 +4,12 @@
     --color_white_text: #dfdfd6;
     --color_background: #1b1b1f;
 
+    --color_white_lines_background: #A1A1A105;
+    --background_cube_size: 150px;
+    --background_cube_lines_width: max(0.15vw, 1.5px);
+    --background_cube_lines_scale_each: calc(var(--background_cube_lines_width) * 0.5);
+    --background_cube_lines:#0000 calc(50% - var(--background_cube_lines_scale_each)),var(--color_white_lines_background) 0 calc(50% + var(--background_cube_lines_scale_each)),#0000 0;
+
     --color_h1: #287FD7;
     --color_h2: color-mix(in srgb, var(--color_white_text), #000 10%);
 
@@ -32,6 +38,13 @@
     --color_Parts_dark: color-mix(in srgb, var(--prism_color_unity_type), #000 30%);
     --color_Github_dark: color-mix(in srgb, var(--color_white_text), #000 30%);
     --color_Guide_dark: color-mix(in srgb, var(--prism_color_string), #000 30%);
+
+    --thunderstore_color: #3c3c89;
+
+    --hover_over_scale_multiply: 1.1;
+    --hover_over_scale_multiply_pressed: 0.95;
+
+    --content_transitions: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 * {
@@ -66,6 +79,11 @@ html, body {
     justify-content: center;
     align-items: center;
     color: var(--color_white_text);
+}
+
+html {
+    background: linear-gradient(0deg,var(--background_cube_lines)),linear-gradient(90deg,var(--background_cube_lines)), repeating-conic-gradient(from 0deg,var(--color_background) 0 25%,var(--color_background) 0 50%) !important;
+    background-size: var(--background_cube_size) var(--background_cube_size) !important;
 }
 
 #header_id {
@@ -128,12 +146,25 @@ h2 {
     flex-direction: row;
     align-items: flex-start;
     view-transition-name: inner_content;
-    transition: opacity 0.75s ease;
+    
     opacity: 0;
+    transition: opacity 0.75s ease;
 }
 
-.is-loaded {
+#content.is-loaded {
     opacity: 1 !important;
+}
+
+#replaceableContent {
+    opacity: 0;
+    transition: opacity 0s;
+    transform: translateY(0.8rem);
+}
+
+#replaceableContent.is-visible {
+    opacity: 1;
+    transition: var(--content_transitions);
+    transform: translateY(0);
 }
 
 .gettingStarted {
@@ -156,6 +187,21 @@ h2 {
     border-radius: 4rem;
     text-align: center;
     margin: var(--button_margin);
+    scale: 1;
+    transition: scale 0.2s ease;
+}
+
+.button:hover {
+    scale: var(--hover_over_scale_multiply);
+}
+
+.button:active {
+    scale: var(--hover_over_scale_multiply_pressed);
+}
+
+.thunderstore {
+    width: calc(var(--button_width) * 2);
+    background-color: var(--thunderstore_color);
 }
 
 button {
@@ -163,10 +209,18 @@ button {
     color: var(--color_white_text);
     text-align: left;
     margin: var(--button_margin);
+    scale: 1;
+    transition: scale 0.2s ease;
+    transform-origin: left center;
 }
 
 button:hover {
     cursor: pointer;
+    scale: var(--hover_over_scale_multiply);
+}
+
+button:active {
+    scale: var(--hover_over_scale_multiply_pressed);
 }
 
 #home_content {
@@ -174,6 +228,10 @@ button:hover {
     flex-direction: column;
     margin-top: 5rem;
     min-width: 60vw;
+}
+
+.arrow {
+    animation: bounce_right 1s ease-in-out both;
 }
 
 /* alerts */
@@ -257,6 +315,21 @@ button:hover {
 
 .important h1::before {
     mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5ZM440-440h80v-240h-80v240ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm301.5-598.5Q510-807 510-820t-8.5-21.5Q493-850 480-850t-21.5 8.5Q450-833 450-820t8.5 21.5Q467-790 480-790t21.5-8.5ZM200-200v-560 560Z"/></svg>');
+}
+
+@keyframes bounce_right {
+  0% {
+    transform: translateX(0.5rem);
+  }
+  33% {
+    transform: translateX(0.1rem);
+  }
+  66% {
+    transform: translateX(0.4rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 900px) {

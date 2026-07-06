@@ -291,9 +291,8 @@ async function fetchFolderGrouped(folderUrl) {
 }
 
 async function fetchAndRender(url, fallbackHtml = null) {
-  if (!contentElement) return false;
-  if (!wholeContentElement) return false;
-  wholeContentElement.classList.remove('is-loaded');
+  if (!contentElement || !wholeContentElement) return false;
+  contentElement.classList.remove('is-visible');
 
   try {
     const response = await fetch(url);
@@ -315,7 +314,10 @@ async function fetchAndRender(url, fallbackHtml = null) {
     }
 
     await loadContentVariables();
-    requestAnimationFrame(() => wholeContentElement.classList.add('is-loaded'));
+    requestAnimationFrame(() => {
+      wholeContentElement.classList.add('is-loaded');
+      contentElement.classList.add('is-visible');
+    });
     return true;
 
   } catch (error) {

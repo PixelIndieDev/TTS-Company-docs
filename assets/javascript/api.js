@@ -91,6 +91,27 @@ function highlightCode() {
   }
 }
 
+async function loadGithubCodeBlocks() {
+  const codeBlock = document.getElementById('github-code-block');
+  if (!codeBlock) return;
+  const url = codeBlock.getAttribute('data-src');
+  if (!url) {
+    console.warn("Element #github-code-block is missing a 'data-src' attribute.");
+    return;
+  }
+  try {
+    const response = await fetch(url); 
+    if (!response.ok) {
+      throw new Error(`Failed to fetch source file from GitHub. Status: ${response.status}`);
+    }
+    const rawCodeText = await response.text();
+    codeBlock.textContent = rawCodeText; 
+  } catch (error) {
+    console.error("Error loading GitHub file contents:", error);
+    codeBlock.textContent = `// Error loading code snippet: ${error.message}`;
+  }
+}
+
 async function getFileNames(type) {
   const cacheKey = `${type}FileNamesGrouped`;
   const cachedFiles = sessionStorage.getItem(cacheKey);
@@ -301,6 +322,8 @@ async function fetchAndRender(url, fallbackHtml = null) {
     }
 
     contentElement.innerHTML = await response.text();
+    
+    await loadGithubCodeBlocks();
     highlightCode();
     
     const currentKey = getCurrentPageKey();

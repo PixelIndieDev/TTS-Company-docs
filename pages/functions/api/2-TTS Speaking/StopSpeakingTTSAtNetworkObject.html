@@ -1,0 +1,42 @@
+<div class="function_container">
+    <div class="function_container_text_part">
+        <h2 id="func_title"></h2>
+        <h3>Stops any currently playing TTS audio at a network object TTS audio source.</h3>
+
+        <h4>Inputs</h4>
+            <h5>networkObjectRefOfSpeaker <span class="param_note note_overload">Overload 1</span></h5>
+                <p class="variable_networkObjectRefOfSpeaker"></p>
+
+            <h5>objectRefOfSpeaker <span class="param_note note_overload">Overload 2</span></h5>
+                <p class="variable_objectRefOfSpeaker"></p>
+
+            <h5>useGlobalAudioSource <span class="param_note">optional</span></h5>
+                <p class="variable_useGlobalAudioSource"></p>
+
+        <h4>Returns</h4>
+            <h5>None</h5>
+    </div>
+    
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 1)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void StopSpeakingTTSAtNetworkObject(NetworkObjectReference networkObjectRefOfSpeaker, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+    <div class="code_container">
+        <div class="header">
+            <span class="title">C# (Overload 2)</span>
+        </div>
+        <pre>
+            <code class="language-csharp">
+                public static void StopSpeakingTTSAtNetworkObject(GameObject objectRefOfSpeaker, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
+            </code>
+        </pre>
+    </div>
+
+</div>

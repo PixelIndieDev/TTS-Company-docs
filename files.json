@@ -6,6 +6,7 @@
     "pages/functions/api/1-TTS Audio Sources/UpdateTTSAudioSourceSettingsOnNetworkObject",
     "pages/functions/api/1-TTS Audio Sources/RemoveTTSAudioSourceOnNetworkObject",
     "pages/functions/api/2-TTS Speaking/SpeakTTSAtNetworkObject",
+    "pages/functions/api/2-TTS Speaking/StopSpeakingTTSAtNetworkObject",
     "pages/functions/api/3-TTS Pregenerating/PreGenerateTTS"
   ],
   "utils": [
@@ -34,9 +35,11 @@
   "faq": [
     "pages/faq/Development/Why use PiperTTS",
     "pages/faq/Development/How can I test if the mod works",
+    "pages/faq/Development/Can I add my own custom Piper (.onnx) voice models",
     "pages/faq/Inner Workings/Can you explain the TTS audio sources",
     "pages/faq/Inner Workings/Is the TTS synced across players",
     "pages/faq/Inner Workings/Does TTS work through the walkie-talkie",
+    "pages/faq/Inner Workings/Does the TTS audio attract entities",
     "pages/faq/Inner Workings/How does the caching work",
     "pages/faq/Inner Workings/How long does it take to generate",
     "pages/faq/Thunderstore/Why is the mod marked as AI-Generated",

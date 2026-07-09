@@ -1,7 +1,16 @@
 <div class="function_container">
+    <div class="alert note">
+        <h1>Note</h1>
+        <h2>If the user's system is low on memory, some voice models will automatically unload in the background. Requesting an unloaded model forces the mod to swap models in and out of memory, which dramatically increases TTS generation time.</h2>
+    </div>
+</div>
+
+<div class="function_container">
     <div class="function_container_text_part gettingstartedText">
         <h2 id="func_title"></h2>
-        <h3>The TTS generation speed depends on hardware and TTS length.</h3>
-        <p>If the same voice lines is called again using the same voice settings, then the generation is instant, as it just reads the cached audio file.</p>
+        <h3>TTS generation speed depends on your hardware and the length of the TTS input text.</h3>
+        <p>Testing showed that uncached TTS generation typically takes roughly 1 to 2 seconds.</p>
+        <p>Interestingly, generation time remains consistent regardless of hardware scaling, showing no noticeable difference between a 2-core and an 18-core CPU, but there might be more difference when using long TTS input texts.</p>
+        <p>If the same line is requested again using identical voice settings, TTS generation is instantaneous as the mod plays the cached audio file.</p>
     </div>
 </div>

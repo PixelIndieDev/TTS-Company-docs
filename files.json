@@ -41,6 +41,7 @@
     "pages/faq/Inner Workings/Does TTS work through the walkie-talkie",
     "pages/faq/Inner Workings/Does the TTS audio attract entities",
     "pages/faq/Inner Workings/How does the caching work",
+    "pages/faq/Inner Workings/Does the TTS generation use CPU or GPU",
     "pages/faq/Inner Workings/How long does it take to generate",
     "pages/faq/Thunderstore/Why is the mod marked as AI-Generated",
     "pages/faq/Thunderstore/Why is the mod removed from Thunderstore"

@@ -1,5 +1,5 @@
 const HARDCODED_HOME = `<p>UNKNOWN DEFAULT TEXT</p>`;
-const ACRONYMS = ['TTS', 'API'];
+const ACRONYMS = ['TTS', 'API', 'CPU', 'GPU', 'I'];
 
 const PAGE_CONFIG = {
   api: {
@@ -164,7 +164,7 @@ async function getFileNames(type) {
   }
 }
 
-function getFriendlyName(fileName) {
+function getFriendlyName(fileName, endConcat) {
   if (!fileName) return '';
 
   const spaced = fileName
@@ -182,7 +182,7 @@ function getFriendlyName(fileName) {
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     }
     return word.toLowerCase();
-  }).join(' ');
+  }).join(' ').concat(endConcat);
 }
 
 function generateNavButtons(groupedFiles, containerSelector, prefix, postfix) {
@@ -204,7 +204,7 @@ function generateNavButtons(groupedFiles, containerSelector, prefix, postfix) {
 
     const buttonsHTML = files.map(filePath => {
       displayName = filePath.includes('/') ? filePath.split('/').pop() : filePath;
-      if (prefix === PAGE_CONFIG.gettingstarted.prefix) displayName = getFriendlyName(displayName);
+      if (prefix === PAGE_CONFIG.gettingstarted.prefix) displayName = getFriendlyName(displayName, '');
       return `<button class="nav-btn" data-page="${prefix}${filePath}">${displayName}${postfix}</button>`;
     }).join('');
 
@@ -238,7 +238,10 @@ function updateFunctionTitle(pageName) {
     fileName = fileName.split('/').pop();
   }
 
-  titleElement.textContent = getFriendlyName(fileName);
+  const currentKey = getCurrentPageKey();
+  const postfix = (currentKey === 'faq') ? '?' : '';
+  
+  titleElement.textContent = getFriendlyName(fileName, postfix);
 }
 
 async function fetchFolderGrouped(folderUrl) {

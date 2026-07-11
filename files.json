@@ -14,7 +14,9 @@
     "pages/functions/utils/Network Object Statuses/IsNetworkObjectAwaitingTTSGeneration",
     "pages/functions/utils/Network Object Statuses/IsNetworkObjectCurrentlySpeaking",
     "pages/functions/utils/TTS Voices/GetRandomFoundTTSVoiceName",
-    "pages/functions/utils/TTS Voices/GetRandomLoadedTTSVoicename",
+    "pages/functions/utils/TTS Voices/GetRandomLoadedTTSVoiceName",
+    "pages/functions/utils/TTS Voices/GetAllFoundTTSVoiceNames",
+    "pages/functions/utils/TTS Voices/GetAllLoadedTTSVoiceNames",
     "pages/functions/utils/TTS Voices/HasTTSVoiceModelBeenLoadedIntoMemory"
   ],
   "parts": [

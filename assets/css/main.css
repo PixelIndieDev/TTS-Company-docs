@@ -3,6 +3,7 @@
 
     --color_white_text: #dfdfd6;
     --color_background: #1b1b1f;
+    --color_background_light: #303037;
 
     --color_white_lines_background: #A1A1A105;
     --background_cube_size: 150px;
@@ -84,8 +85,24 @@ html, body {
 }
 
 html {
-    background: linear-gradient(0deg,var(--background_cube_lines)),linear-gradient(90deg,var(--background_cube_lines)), repeating-conic-gradient(from 0deg,var(--color_background) 0 25%,var(--color_background) 0 50%) !important;
-    background-size: var(--background_cube_size) var(--background_cube_size) !important;
+    background: linear-gradient(45deg, var(--color_background), var(--color_background_light)) !important;
+    background-size: 100% 100% !important;
+    background-attachment: fixed !important;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(0deg, var(--background_cube_lines)), linear-gradient(90deg, var(--background_cube_lines));
+    background-size: var(--background_cube_size) var(--background_cube_size);
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
 }
 
 #header_id {

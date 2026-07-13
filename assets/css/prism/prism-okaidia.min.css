@@ -3,14 +3,17 @@
 
   --code_ehader_font_size: 1.5rem;
   --code_background_color: color-mix(in srgb, var(--function_background_color), #000 6%);
+  --code_background_color_light: color-mix(in srgb, var(--function_background_color), #ffffff var(--gradientLighteningAmount));
+
   --code_background_code_part_color: color-mix(in srgb, var(--code_background_color), #000 6%);
+
+  --code_background: linear-gradient(45deg, var(--code_background_color), var(--code_background_color_light));
 }
 
 code[class*=language-],
 pre[class*=language-] {
   color: var(--prism_color_default_text);
   background: 0 0;
-  text-shadow: 0 1px rgba(0,0,0,.3);
   font-family: var(--code_font_family);
   font-size: 1em;
   text-align: left;
@@ -131,7 +134,7 @@ pre[class*=language-] {
 
 .code_container {
   margin: 0.5vw;
-  background-color: var(--code_background_color);
+  background: var(--code_background);
   border-radius: 0.25rem;
   padding: 1vw;
   box-sizing: border-box;

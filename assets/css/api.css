@@ -1,6 +1,9 @@
 :root {
     --function_background_color: color-mix(in srgb, var(--color_background), #000 8%);
+    --function_background_color_light: color-mix(in srgb, var(--function_background_color), #ffffff var(--gradientLighteningAmount));
     --function_background_color_dark: color-mix(in srgb, var(--function_background_color), #000 2%);
+
+    --function_background: linear-gradient(45deg, var(--function_background_color), var(--function_background_color_light));
 
     --function_h3: color-mix(in srgb, var(--color_white_text), #000 20%);
     --function_p: color-mix(in srgb, var(--function_h3), #000 10%);
@@ -23,7 +26,7 @@ img {
     height: fit-content;
     overflow: hidden;
     justify-content: start;
-    background-color: var(--function_background_color);
+    background: var(--function_background);
     margin: 0.5vw;
     padding: 1rem;
     margin-top: 0;
@@ -107,7 +110,7 @@ li ul {
 
 .function_container {
     margin: 1rem 0;
-    background-color: var(--function_background_color);
+    background: var(--function_background);
     width: 100%;
     height: fit-content;
 }

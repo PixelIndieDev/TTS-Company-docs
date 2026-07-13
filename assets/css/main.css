@@ -1,9 +1,11 @@
 :root {
 	--fontFamily: 'Stack Sans Headline', sans-serif;
 
+    --gradientLighteningAmount: 2%;
+
     --color_white_text: #dfdfd6;
     --color_background: #1b1b1f;
-    --color_background_light: #303037;
+    --color_background_light: color-mix(in srgb, var(--color_background), #ffffff var(--gradientLighteningAmount));
 
     --color_white_lines_background: #A1A1A105;
     --background_cube_size: 150px;
@@ -21,6 +23,10 @@
     --button_height_header: calc(var(--button_height)* 0.75);
     --button_padding_header: 0.4rem 1rem;
 
+    --button_hover_over_filter: brightness(1.1);
+    --button_hover_over_filter_down: brightness(1.1);
+    --button_hover_over_filter_transition: filter 0.1s ease;
+
     --alerts_tip_color: #188131;
     --alerts_note_color: #0c67d8;
     --alerts_important_color: #8253de;
@@ -34,11 +40,18 @@
     --prism_color_comment: #57a64a;
     --prism_color_string: #d69d85;
 
-    --color_h1_dark: color-mix(in srgb, var(--color_h1), #000 30%);
-    --color_API_dark: color-mix(in srgb, var(--prism_color_function), #000 30%);
-    --color_Parts_dark: color-mix(in srgb, var(--prism_color_unity_type), #000 30%);
-    --color_Github_dark: color-mix(in srgb, var(--color_white_text), #000 30%);
-    --color_Guide_dark: color-mix(in srgb, var(--prism_color_string), #000 30%);
+    --darker_amount: 30%;
+    --darker_lighter_amount: calc(var(--darker_amount) / 2);
+    --color_h1_dark: color-mix(in srgb, var(--color_h1), #000 var(--darker_amount));
+    --color_h1_dark_light: color-mix(in srgb, var(--color_h1), #000 var(--darker_lighter_amount));
+    --color_API_dark: color-mix(in srgb, var(--prism_color_function), #000 var(--darker_amount));
+    --color_API_dark_light: color-mix(in srgb, var(--prism_color_function), #000 var(--darker_lighter_amount));
+    --color_Parts_dark: color-mix(in srgb, var(--prism_color_unity_type), #000 var(--darker_amount));
+    --color_Parts_dark_light: color-mix(in srgb, var(--prism_color_unity_type), #000 var(--darker_lighter_amount));
+    --color_Github_dark: color-mix(in srgb, var(--color_white_text), #000 var(--darker_amount));
+    --color_Github_dark_light: color-mix(in srgb, var(--color_white_text), #000 var(--darker_lighter_amount));
+    --color_Guide_dark: color-mix(in srgb, var(--prism_color_string), #000 var(--darker_amount));
+    --color_Guide_dark_light: color-mix(in srgb, var(--prism_color_string), #000 var(--darker_lighter_amount));
 
     --thunderstore_color: #3c3c89;
 
@@ -48,6 +61,12 @@
     --content_transitions: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 
     --speed_icon_size: 2rem;
+
+    --button_background: linear-gradient(45deg, var(--color_h1_dark), var(--color_h1_dark_light));
+    --button_background_API: linear-gradient(45deg, var(--color_API_dark), var(--color_API_dark_light));
+    --button_background_Parts: linear-gradient(45deg, var(--color_Parts_dark), var(--color_Parts_dark_light));
+    --button_background_Github: linear-gradient(45deg, var(--color_Github_dark), var(--color_Github_dark_light));
+    --button_background_Guide: linear-gradient(45deg, var(--color_Guide_dark), var(--color_Guide_dark_light));
 }
 
 * {
@@ -90,6 +109,15 @@ html {
     background-attachment: fixed !important;
 }
 
+pre a, code a,
+pre span, code span {
+  text-shadow: 0 1px rgba(0,0,0,.3) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, span, a {
+    text-shadow: 0 0.075rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
 body::before {
     content: "";
     position: fixed;
@@ -127,7 +155,7 @@ header a.button {
     height: var(--button_height_header);
     line-height: var(--button_height_header);
     color: var(--color_white_text);
-    background-color: var(--color_h1_dark);
+    background: var(--button_background);
     padding: var(--button_padding_header);
     border-radius: 4rem;
     text-align: center;
@@ -135,19 +163,19 @@ header a.button {
 }
 
 .header_color_API {
-    background-color: var(--color_API_dark) !important;
+    background: var(--button_background_API) !important;
 }
 
 .header_color_Parts {
-    background-color: var(--color_Parts_dark) !important;
+    background: var(--button_background_Parts) !important;
 }
 
 .color_Github_dark {
-    background-color: var(--color_Github_dark) !important;
+    background: var(--button_background_Github) !important;
 }
 
 .header_color_Guide {
-    background-color: var(--color_Guide_dark) !important;
+    background: var(--button_background_Guide) !important;
 }
 
 h1 {
@@ -207,14 +235,17 @@ h2 {
     text-align: center;
     margin: var(--button_margin);
     scale: 1;
-    transition: scale 0.2s ease;
+    filter: none;
+    transition: scale 0.2s ease, var(--button_hover_over_filter_transition);
 }
 
 .button:hover {
+    filter: var(--button_hover_over_filter);
     scale: var(--hover_over_scale_multiply);
 }
 
 .button:active {
+    filter: var(--button_hover_over_filter_down);
     scale: var(--hover_over_scale_multiply_pressed);
 }
 
@@ -229,16 +260,18 @@ button {
     text-align: left;
     margin: var(--button_margin);
     scale: 1;
-    transition: scale 0.2s ease;
+    transition: scale 0.2s ease, var(--button_hover_over_filter_transition);
     transform-origin: left center;
 }
 
 button:hover {
+    filter: var(--button_hover_over_filter);
     cursor: pointer;
     scale: var(--hover_over_scale_multiply);
 }
 
 button:active {
+    filter: var(--button_hover_over_filter_down);
     scale: var(--hover_over_scale_multiply_pressed);
 }
 
@@ -423,6 +456,14 @@ button:active {
     header > div {
         height: auto;
         min-height: 4rem;
+    }
+
+    header > div > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
     }
 
     header a.button {

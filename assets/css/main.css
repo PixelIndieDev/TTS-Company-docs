@@ -1,7 +1,7 @@
 :root {
 	--fontFamily: 'Stack Sans Headline', sans-serif;
 
-    --gradientLighteningAmount: 2%;
+    --gradientLighteningAmount: 1%;
 
     --color_white_text: #dfdfd6;
     --color_background: #1b1b1f;
@@ -22,10 +22,6 @@
 
     --button_height_header: calc(var(--button_height)* 0.75);
     --button_padding_header: 0.4rem 1rem;
-
-    --button_hover_over_filter: brightness(1.1);
-    --button_hover_over_filter_down: brightness(1.1);
-    --button_hover_over_filter_transition: filter 0.1s ease;
 
     --alerts_tip_color: #188131;
     --alerts_note_color: #0c67d8;
@@ -115,7 +111,7 @@ pre span, code span {
 }
 
 h1, h2, h3, h4, h5, h6, p, li, span, a {
-    text-shadow: 0 0.075rem 0.5rem rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0.075rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
 body::before {
@@ -129,8 +125,7 @@ body::before {
     pointer-events: none;
     background: linear-gradient(0deg, var(--background_cube_lines)), linear-gradient(90deg, var(--background_cube_lines));
     background-size: var(--background_cube_size) var(--background_cube_size);
-    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-    mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%);
 }
 
 #header_id {
@@ -236,16 +231,14 @@ h2 {
     margin: var(--button_margin);
     scale: 1;
     filter: none;
-    transition: scale 0.2s ease, var(--button_hover_over_filter_transition);
+    transition: scale 0.2s ease;
 }
 
 .button:hover {
-    filter: var(--button_hover_over_filter);
     scale: var(--hover_over_scale_multiply);
 }
 
 .button:active {
-    filter: var(--button_hover_over_filter_down);
     scale: var(--hover_over_scale_multiply_pressed);
 }
 
@@ -260,18 +253,16 @@ button {
     text-align: left;
     margin: var(--button_margin);
     scale: 1;
-    transition: scale 0.2s ease, var(--button_hover_over_filter_transition);
+    transition: scale 0.2s ease;
     transform-origin: left center;
 }
 
 button:hover {
-    filter: var(--button_hover_over_filter);
     cursor: pointer;
     scale: var(--hover_over_scale_multiply);
 }
 
 button:active {
-    filter: var(--button_hover_over_filter_down);
     scale: var(--hover_over_scale_multiply_pressed);
 }
 

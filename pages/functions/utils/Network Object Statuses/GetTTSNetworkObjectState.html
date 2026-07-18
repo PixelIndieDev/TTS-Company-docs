@@ -10,6 +10,9 @@
             <h5>gameObject <span class="param_note note_overload">Overload 2</span></h5>
                 <p>The GameObject to check the state of</p>
 
+            <h5>useGlobalAudioSource <span class="param_note">optional</span></h5>
+                <p class="variable_useGlobalAudioSource"></p>
+
         <h4>Returns</h4>
             <p>The object's current TTSNetworkObjectState</p>
     </div>
@@ -20,7 +23,7 @@
         </div>
         <pre>
             <code class="language-csharp">
-                public static TTSNetworkObjectState GetTTSNetworkObjectState(NetworkObject networkObject)
+                public static TTSNetworkObjectState GetTTSNetworkObjectState(NetworkObject networkObject, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
             </code>
         </pre>
     </div>
@@ -31,7 +34,7 @@
         </div>
         <pre>
             <code class="language-csharp">
-                public static TTSNetworkObjectState GetTTSNetworkObjectState(GameObject gameObject)
+                public static TTSNetworkObjectState GetTTSNetworkObjectState(GameObject gameObject, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
             </code>
         </pre>
     </div>

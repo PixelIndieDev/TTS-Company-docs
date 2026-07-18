@@ -10,6 +10,9 @@
             <h5>gameObject <span class="param_note note_overload">Overload 2</span></h5>
                 <p>The GameObject to check</p>
 
+            <h5>useGlobalAudioSource <span class="param_note">optional</span></h5>
+                <p class="variable_useGlobalAudioSource"></p>
+
         <h4>Returns</h4>
             <p>true if the object is currently speaking TTS audio, false otherwise</p>
     </div>
@@ -20,7 +23,7 @@
         </div>
         <pre>
             <code class="language-csharp">
-                public static bool IsNetworkObjectCurrentlySpeaking(NetworkObject networkObject)
+                public static bool IsNetworkObjectCurrentlySpeaking(NetworkObject networkObject, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
             </code>
         </pre>
     </div>
@@ -31,7 +34,7 @@
         </div>
         <pre>
             <code class="language-csharp">
-                public static bool IsNetworkObjectCurrentlySpeaking(GameObject gameObject)
+                public static bool IsNetworkObjectCurrentlySpeaking(GameObject gameObject, bool useGlobalAudioSource = APIDefaultsConstants.USE_GLOBAL_AUDIO_SOURCE_DEFAULT)
             </code>
         </pre>
     </div>
